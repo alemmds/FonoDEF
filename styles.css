@@ -1,64 +1,48 @@
+/* Reset básico */
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
-h1, h2 {
-    color: #333;
+.container {
+    padding: 20px;
 }
 
+/* Estilo para o formulário */
 form {
     margin-bottom: 20px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
+/* Estilo para os botões do dias */
+.button-dia {
+    padding: 10px 15px; /* Aumenta o tamanho do botão */
+    font-size: 16px; /* Aumenta o tamanho da fonte */
+    margin: 5px; /* Adiciona um espaço ao redor do botão */
+    cursor: pointer; /* Muda o cursor ao passar o mouse */
 }
 
-input, select, textarea {
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-.month {
-    cursor: pointer;
-    margin: 10px 0;
-    background-color: lightgray;
-    padding: 5px;
-    border-radius: 4px;
-}
-
-.details {
-    display: none; /* Initially hide details */
-    margin-left: 20px;
-    background-color: white;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+/* Estilo para as consultas na horizontal */
+.consulta-horizontal {
+    display: flex; /* Alinha os itens em uma linha */
+    flex-wrap: wrap; /* Permite quebra de linha se não couber */
+    justify-content: flex-start; /* Alinha à esquerda */
+    margin-bottom: 10px; /* Espaço entre as consultas */
 }
 
 .consulta {
-    margin-bottom: 10px;
+    border: 1px solid #ccc; /* Adiciona uma borda */
+    padding: 10px; /* Espaço interno */
+    margin-right: 10px; /* Espaço entre consultas */
+    flex: 1; /* Permite que as consultas ocupem o espaço disponível */
+}
+
+.month {
+    font-weight: bold; /* Negrito para o mês */
+    margin-top: 20px; /* Espaço acima do mês */
+}
+
+.details {
+    display: none; /* Esconde os detalhes inicialmente */
+    margin-left: 20px; /* Espaço à esquerda para os detalhes */
 }
