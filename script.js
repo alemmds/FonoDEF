@@ -46,9 +46,9 @@ function atualizarConsultas() {
         // Consultas de hoje
         if (consulta.dataConsulta === hoje) {
             const consultaDiv = document.createElement("div");
-            consultaDiv.classList.add("consulta-horizontal"); // Adiciona a classe para consultas
+            consultaDiv.classList.add("consulta"); // Adiciona a classe para consultas
             consultaDiv.innerHTML = `
-                <div class="consulta">
+                <div class="info-paciente">
                     <strong>${consulta.nomePaciente}</strong><br>
                     Responsável: ${consulta.responsavel}<br>
                     Idade: ${consulta.idade}<br>
@@ -88,9 +88,9 @@ function atualizarConsultas() {
 
         consultasMes.forEach(consulta => {
             const consultaDiv = document.createElement("div");
-            consultaDiv.classList.add("consulta-horizontal"); // Adiciona a classe para consultas
+            consultaDiv.classList.add("consulta"); // Adiciona a classe para consultas
             consultaDiv.innerHTML = `
-                <div class="consulta">
+                <div class="info-paciente">
                     <strong>${consulta.nomePaciente}</strong><br>
                     Responsável: ${consulta.responsavel}<br>
                     Idade: ${consulta.idade}<br>
