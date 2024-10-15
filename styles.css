@@ -3,71 +3,141 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4; /* Fundo leve */
+    background-color: #f4f4f4;
 }
 
-/* Estilo para o cabeçalho */
+/* Cabeçalho */
 header {
-    background-color: #007BFF; /* Cor do cabeçalho */
-    color: white; /* Cor do texto do cabeçalho */
+    background-color: #007BFF;
+    color: white;
     padding: 20px;
     text-align: center;
+    font-size: 24px;
+    font-weight: bold;
 }
 
-/* Estilo para o container principal */
+/* Container principal */
 .container {
     padding: 20px;
 }
 
-/* Estilo para o formulário */
+/* Estilização do formulário */
 form {
-    background: white; /* Fundo branco para o formulário */
+    background: white;
     padding: 20px;
-    border-radius: 8px; /* Bordas arredondadas */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
 
-/* Estilo para os botões do dias */
+/* Estilo dos inputs e selects do formulário */
+form input, form select {
+    padding: 10px;
+    margin: 5px 0;
+    width: calc(100% - 22px); /* Largura responsiva */
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilização dos botões no formulário */
+form button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #218838;
+}
+
+/* Consultas de hoje e agendadas */
+#consultasHoje, #consultasPorMes {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo dos botões de dias */
 .button-dia {
-    padding: 15px 20px; /* Aumenta o tamanho do botão */
-    font-size: 20px; /* Aumenta o tamanho da fonte */
-    margin: 5px; /* Adiciona um espaço ao redor do botão */
-    cursor: pointer; /* Muda o cursor ao passar o mouse */
-    background-color: #28a745; /* Cor do botão */
-    color: white; /* Cor do texto do botão */
-    border: none; /* Remove a borda padrão */
-    border-radius: 5px; /* Bordas arredondadas */
-    transition: background-color 0.3s; /* Transição suave */
+    padding: 10px;
+    font-size: 18px;
+    margin: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-/* Efeito hover para os botões */
 .button-dia:hover {
-    background-color: #218838; /* Cor ao passar o mouse */
+    background-color: #0056b3;
 }
 
-/* Estilo para as consultas na vertical */
+/* Consulta estilizada */
 .consulta {
-    border: 1px solid #ccc; /* Adiciona uma borda */
-    padding: 10px; /* Espaço interno */
-    margin-bottom: 10px; /* Espaço entre consultas */
-    background-color: #ffffff; /* Fundo branco para consultas */
-    border-radius: 5px; /* Bordas arredondadas */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 5px;
 }
 
-/* Estilo para as informações do paciente na vertical */
+/* Estilizar as informações do paciente */
 .info-paciente {
-    display: block; /* Mantém as informações em coluna */
+    flex-grow: 1;
 }
 
-/* Mês em negrito */
+/* Botões de alterar e excluir */
+.consulta button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.consulta button:hover {
+    background-color: #c82333;
+}
+
+/* Alterar botão para verde */
+.consulta button.alterar {
+    background-color: #28a745;
+}
+
+.consulta button.alterar:hover {
+    background-color: #218838;
+}
+
+/* Mês */
 .month {
-    font-weight: bold; /* Negrito para o mês */
-    margin-top: 20px; /* Espaço acima do mês */
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
-/* Detalhes do mês ocultos inicialmente */
+/* Detalhes escondidos por padrão */
 .details {
-    display: none; /* Esconde os detalhes inicialmente */
-    margin-left: 20px; /* Espaço à esquerda para os detalhes */
+    display: none;
+    margin-left: 20px;
+}
+
+/* Mostrar detalhes */
+.details.show {
+    display: block;
 }
