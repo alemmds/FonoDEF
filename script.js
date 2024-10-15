@@ -1,6 +1,6 @@
 let consultas = [];
 
-// aAdiciona o listener ao formulário
+// Adicionar consulta ao ser submetido o formulário
 document.getElementById("consultaForm").addEventListener("submit", function(event) {
     event.preventDefault();
     
@@ -46,7 +46,7 @@ function atualizarConsultas() {
         // Consultas de hoje
         if (consulta.dataConsulta === hoje) {
             const consultaDiv = document.createElement("div");
-            consultaDiv.classList.add("consulta"); // Adiciona a classe para consultas
+            consultaDiv.classList.add("consulta");
             consultaDiv.innerHTML = `
                 <div class="info-paciente">
                     <strong>${consulta.nomePaciente}</strong><br>
@@ -58,16 +58,18 @@ function atualizarConsultas() {
                     Data da Consulta: ${consulta.dataConsulta}<br>
                     Horário: ${consulta.horarioConsulta}<br>
                     Recomendações: ${consulta.recomendacoes}<br>
+                </div>
+                <div>
                     <button onclick="excluirConsulta('${consulta.nomePaciente}')">Excluir</button>
-                    <button onclick="alterarConsulta('${consulta.nomePaciente}')">Alterar</button>
+                    <button class="alterar" onclick="alterarConsulta('${consulta.nomePaciente}')">Alterar</button>
                 </div>
             `;
             consultasHoje.appendChild(consultaDiv);
         }
 
-        // Agrupando por mês
+        // Agrupando consultas por mês
         const data = new Date(consulta.dataConsulta);
-        const mes = data.toLocaleString('pt-BR', { month: 'long' }); // Nome do mês em português
+        const mes = data.toLocaleString('pt-BR', { month: 'long' });
         const ano = data.getFullYear();
         const chave = `${mes} ${ano}`;
 
@@ -86,25 +88,38 @@ function atualizarConsultas() {
         detalhesDiv.classList.add("details");
         detalhesDiv.id = mesAno;
 
+        // Botões de dias
         consultasMes.forEach(consulta => {
-            const consultaDiv = document.createElement("div");
-            consultaDiv.classList.add("consulta"); // Adiciona a classe para consultas
-            consultaDiv.innerHTML = `
-                <div class="info-paciente">
-                    <strong>${consulta.nomePaciente}</strong><br>
-                    Responsável: ${consulta.responsavel}<br>
-                    Idade: ${consulta.idade}<br>
-                    Telefone: ${consulta.telefone}<br>
-                    Especialista: ${consulta.especialista}<br>
-                    Consultório: ${consulta.consultorio}<br>
-                    Data da Consulta: ${consulta.dataConsulta}<br>
-                    Horário: ${consulta.horarioConsulta}<br>
-                    Recomendações: ${consulta.recomendacoes}<br>
-                    <button onclick="excluirConsulta('${consulta.nomePaciente}')">Excluir</button>
-                    <button onclick="alterarConsulta('${consulta.nomePaciente}')">Alterar</button>
-                </div>
-            `;
-            detalhesDiv.appendChild(consultaDiv);
+            const data = new Date(consulta.dataConsulta);
+            const dia = data.getDate();
+
+            const diaButton = document.createElement("button");
+            diaButton.classList.add("button-dia");
+            diaButton.innerText = dia;
+            diaButton.addEventListener('click', function() {
+                const consultaDiv = document.createElement("div");
+                consultaDiv.classList.add("consulta");
+                consultaDiv.innerHTML = `
+                    <div class="info-paciente">
+                        <strong>${consulta.nomePaciente}</strong><br>
+                        Responsável: ${consulta.responsavel}<br>
+                        Idade: ${consulta.idade}<br>
+                        Telefone: ${consulta.telefone}<br>
+                        Especialista: ${consulta.especialista}<br>
+                        Consultório: ${consulta.consultorio}<br>
+                        Data da Consulta: ${consulta.dataConsulta}<br>
+                        Horário: ${consulta.horarioConsulta}<br>
+                        Recomendações: ${consulta.recomendacoes}<br>
+                    </div>
+                    <div>
+                        <button onclick="excluirConsulta('${consulta.nomePaciente}')">Excluir</button>
+                        <button class="alterar" onclick="alterarConsulta('${consulta.nomePaciente}')">Alterar</button>
+                    </div>
+                `;
+                detalhesDiv.appendChild(consultaDiv);
+            });
+
+            detalhesDiv.appendChild(diaButton);
         });
 
         consultasPorMes.appendChild(mesDiv);
@@ -112,14 +127,13 @@ function atualizarConsultas() {
     }
 }
 
+// Alternar a exibição dos detalhes de cada mês
 function toggleDetails(mesAno) {
     const detalhesDiv = document.getElementById(mesAno);
-    if (detalhesDiv.style.display === "none" || !detalhesDiv.style.display) {
-        detalhesDiv.style.display = "block";
-        detalhesDiv.previousElementSibling.lastChild.textContent = "[-]"; // Muda o texto para [-]
+    if (detalhesDiv.classList.contains("show")) {
+        detalhesDiv.classList.remove("show");
     } else {
-        detalhesDiv.style.display = "none";
-        detalhesDiv.previousElementSibling.lastChild.textContent = "[+]"; // Muda o texto para [+]
+        detalhesDiv.classList.add("show");
     }
 }
 
@@ -130,19 +144,15 @@ function excluirConsulta(nomePaciente) {
 
 function alterarConsulta(nomePaciente) {
     const consulta = consultas.find(consulta => consulta.nomePaciente === nomePaciente);
-    if (consulta) {
-        document.getElementById("nomePaciente").value = consulta.nomePaciente;
-        document.getElementById("responsavel").value = consulta.responsavel;
-        document.getElementById("idade").value = consulta.idade;
-        document.getElementById("telefone").value = consulta.telefone;
-        document.getElementById("especialista").value = consulta.especialista;
-        document.getElementById("consultorio").value = consulta.consultorio;
-        document.getElementById("dataConsulta").value = consulta.dataConsulta;
-        document.getElementById("horarioConsulta").value = consulta.horarioConsulta;
-        document.getElementById("recomendacoes").value = consulta.recomendacoes;
+    document.getElementById("nomePaciente").value = consulta.nomePaciente;
+    document.getElementById("responsavel").value = consulta.responsavel;
+    document.getElementById("idade").value = consulta.idade;
+    document.getElementById("telefone").value = consulta.telefone;
+    document.getElementById("especialista").value = consulta.especialista;
+    document.getElementById("consultorio").value = consulta.consultorio;
+    document.getElementById("dataConsulta").value = consulta.dataConsulta;
+    document.getElementById("horarioConsulta").value = consulta.horarioConsulta;
+    document.getElementById("recomendacoes").value = consulta.recomendacoes;
 
-        // Remove a consulta original para permitir atualização
-        consultas = consultas.filter(c => c.nomePaciente !== nomePaciente);
-        atualizarConsultas();
-    }
+    excluirConsulta(nomePaciente);
 }
