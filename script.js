@@ -1,6 +1,6 @@
 let consultas = [];
 
-// Adiciona o listener ao formulário
+// aAdiciona o listener ao formulário
 document.getElementById("consultaForm").addEventListener("submit", function(event) {
     event.preventDefault();
     
