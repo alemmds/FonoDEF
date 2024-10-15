@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Gerenciamento de Consultas - FonoClinic</title>
+</head>
+<body>
+    <h1>Gerenciamento de Consultas - FonoClinic</h1>
+
+    <form id="consultaForm">
+        <label for="nomePaciente">Nome do Paciente:</label>
+        <input type="text" id="nomePaciente" required>
+        
+        <label for="responsavel">Responsável:</label>
+        <input type="text" id="responsavel" required>
+
+        <label for="idade">Idade:</label>
+        <input type="number" id="idade" required>
+
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" required>
+
+        <label for="especialista">Especialista:</label>
+        <input type="text" id="especialista" required>
+
+        <label for="consultorio">Consultório:</label>
+        <select id="consultorio">
+            <option>Consultório 1</option>
+            <option>Consultório 2</option>
+            <option>Consultório 3</option>
+        </select>
+
+        <label for="dataConsulta">Data da Consulta:</label>
+        <input type="date" id="dataConsulta" required>
+
+        <label for="horarioConsulta">Horário da Consulta:</label>
+        <input type="time" id="horarioConsulta" required>
+
+        <label for="recomendacoes">Recomendações:</label>
+        <textarea id="recomendacoes"></textarea>
+
+        <button type="submit">Salvar Consulta</button>
+    </form>
+
+    <h2>Consultas de Hoje</h2>
+    <div id="consultasHoje"></div>
+
+    <h2>Consultas Agendadas por Mês</h2>
+    <div id="consultasPorMes"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
