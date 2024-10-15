@@ -3,52 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <title>Gerenciamento de Consultas - FonoClinic</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Gerenciamento de Consultas - FonoClinic</h1>
+    <header>
+        Gerenciamento de Consultas - FonoClinic
+    </header>
 
-    <form id="consultaForm">
-        <label for="nomePaciente">Nome do Paciente:</label>
-        <input type="text" id="nomePaciente" required>
-        
-        <label for="responsavel">Responsável:</label>
-        <input type="text" id="responsavel" required>
+    <div class="container">
+        <form id="consultaForm">
+            <h2>Nova Consulta</h2>
+            <label>Nome do Paciente: <input type="text" id="nomePaciente" required></label>
+            <label>Responsável: <input type="text" id="responsavel" required></label>
+            <label>Idade: <input type="number" id="idade" required></label>
+            <label>Telefone: <input type="text" id="telefone" required></label>
+            <label>Especialista: <input type="text" id="especialista" required></label>
+            <label>Consultório: <select id="consultorio">
+                <option value="Consultório 1">Consultório 1</option>
+                <option value="Consultório 2">Consultório 2</option>
+                <option value="Consultório 3">Consultório 3</option>
+            </select></label>
+            <label>Data da Consulta: <input type="date" id="dataConsulta" required></label>
+            <label>Horário da Consulta: <input type="time" id="horarioConsulta" required></label>
+            <label>Recomendações: <input type="text" id="recomendacoes"></label>
+            <button type="submit">Salvar Consulta</button>
+        </form>
 
-        <label for="idade">Idade:</label>
-        <input type="number" id="idade" required>
+        <h2>Consultas de Hoje</h2>
+        <div id="consultasHoje"></div>
 
-        <label for="telefone">Telefone:</label>
-        <input type="text" id="telefone" required>
-
-        <label for="especialista">Especialista:</label>
-        <input type="text" id="especialista" required>
-
-        <label for="consultorio">Consultório:</label>
-        <select id="consultorio">
-            <option>Consultório 1</option>
-            <option>Consultório 2</option>
-            <option>Consultório 3</option>
-        </select>
-
-        <label for="dataConsulta">Data da Consulta:</label>
-        <input type="date" id="dataConsulta" required>
-
-        <label for="horarioConsulta">Horário da Consulta:</label>
-        <input type="time" id="horarioConsulta" required>
-
-        <label for="recomendacoes">Recomendações:</label>
-        <textarea id="recomendacoes"></textarea>
-
-        <button type="submit">Salvar Consulta</button>
-    </form>
-
-    <h2>Consultas de Hoje</h2>
-    <div id="consultasHoje"></div>
-
-    <h2>Consultas Agendadas por Mês</h2>
-    <div id="consultasPorMes"></div>
+        <h2>Consultas Agendadas por Mês</h2>
+        <div id="consultasPorMes"></div>
+    </div>
 
     <script src="script.js"></script>
 </body>
