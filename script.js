@@ -1,8 +1,9 @@
-let consultas = JSON.parse(localStorage.getItem("consultas")) || [];
+let consultas = [];
 
+// Adiciona o listener ao formulário
 document.getElementById("consultaForm").addEventListener("submit", function(event) {
     event.preventDefault();
-
+    
     const nomePaciente = document.getElementById("nomePaciente").value;
     const responsavel = document.getElementById("responsavel").value;
     const idade = document.getElementById("idade").value;
@@ -26,7 +27,6 @@ document.getElementById("consultaForm").addEventListener("submit", function(even
     };
 
     consultas.push(novaConsulta);
-    localStorage.setItem("consultas", JSON.stringify(consultas));
     atualizarConsultas();
     this.reset();
 });
@@ -34,17 +34,19 @@ document.getElementById("consultaForm").addEventListener("submit", function(even
 function atualizarConsultas() {
     const consultasHoje = document.getElementById("consultasHoje");
     const consultasPorMes = document.getElementById("consultasPorMes");
+    
+    consultasHoje.innerHTML = ''; // Limpar consultas de hoje
+    consultasPorMes.innerHTML = ''; // Limpar consultas por mês
 
-    consultasHoje.innerHTML = '';
-    consultasPorMes.innerHTML = '';
-
-    const hoje = new Date().toISOString().split('T')[0];
+    const hoje = new Date().toISOString().split('T')[0]; // Data de hoje no formato YYYY-MM-DD
 
     const meses = {};
 
     consultas.forEach(consulta => {
+        // Consultas de hoje
         if (consulta.dataConsulta === hoje) {
             const consultaDiv = document.createElement("div");
+            consultaDiv.classList.add("consulta-horizontal"); // Adiciona a classe para consultas
             consultaDiv.innerHTML = `
                 <div class="consulta">
                     <strong>${consulta.nomePaciente}</strong><br>
@@ -57,14 +59,15 @@ function atualizarConsultas() {
                     Horário: ${consulta.horarioConsulta}<br>
                     Recomendações: ${consulta.recomendacoes}<br>
                     <button onclick="excluirConsulta('${consulta.nomePaciente}')">Excluir</button>
-                    <button onclick="prepararAlteracao('${consulta.nomePaciente}')">Alterar</button>
+                    <button onclick="alterarConsulta('${consulta.nomePaciente}')">Alterar</button>
                 </div>
             `;
             consultasHoje.appendChild(consultaDiv);
         }
 
+        // Agrupando por mês
         const data = new Date(consulta.dataConsulta);
-        const mes = data.toLocaleString('pt-BR', { month: 'long' });
+        const mes = data.toLocaleString('pt-BR', { month: 'long' }); // Nome do mês em português
         const ano = data.getFullYear();
         const chave = `${mes} ${ano}`;
 
@@ -78,13 +81,14 @@ function atualizarConsultas() {
         const mesDiv = document.createElement("div");
         mesDiv.classList.add("month");
         mesDiv.innerHTML = `<strong>${mesAno}</strong> <span onclick="toggleDetails('${mesAno}')">[+]</span>`;
-
+        
         const detalhesDiv = document.createElement("div");
         detalhesDiv.classList.add("details");
         detalhesDiv.id = mesAno;
 
         consultasMes.forEach(consulta => {
             const consultaDiv = document.createElement("div");
+            consultaDiv.classList.add("consulta-horizontal"); // Adiciona a classe para consultas
             consultaDiv.innerHTML = `
                 <div class="consulta">
                     <strong>${consulta.nomePaciente}</strong><br>
@@ -97,7 +101,7 @@ function atualizarConsultas() {
                     Horário: ${consulta.horarioConsulta}<br>
                     Recomendações: ${consulta.recomendacoes}<br>
                     <button onclick="excluirConsulta('${consulta.nomePaciente}')">Excluir</button>
-                    <button onclick="prepararAlteracao('${consulta.nomePaciente}')">Alterar</button>
+                    <button onclick="alterarConsulta('${consulta.nomePaciente}')">Alterar</button>
                 </div>
             `;
             detalhesDiv.appendChild(consultaDiv);
@@ -112,22 +116,19 @@ function toggleDetails(mesAno) {
     const detalhesDiv = document.getElementById(mesAno);
     if (detalhesDiv.style.display === "none" || !detalhesDiv.style.display) {
         detalhesDiv.style.display = "block";
-        detalhesDiv.previousElementSibling.lastChild.textContent = "[-]";
+        detalhesDiv.previousElementSibling.lastChild.textContent = "[-]"; // Muda o texto para [-]
     } else {
         detalhesDiv.style.display = "none";
-        detalhesDiv.previousElementSibling.lastChild.textContent = "[+]";
+        detalhesDiv.previousElementSibling.lastChild.textContent = "[+]"; // Muda o texto para [+]
     }
 }
 
-// Excluir consulta
 function excluirConsulta(nomePaciente) {
     consultas = consultas.filter(consulta => consulta.nomePaciente !== nomePaciente);
-    localStorage.setItem("consultas", JSON.stringify(consultas));
     atualizarConsultas();
 }
 
-// Preparar alteração da consulta
-function prepararAlteracao(nomePaciente) {
+function alterarConsulta(nomePaciente) {
     const consulta = consultas.find(consulta => consulta.nomePaciente === nomePaciente);
     if (consulta) {
         document.getElementById("nomePaciente").value = consulta.nomePaciente;
@@ -140,11 +141,8 @@ function prepararAlteracao(nomePaciente) {
         document.getElementById("horarioConsulta").value = consulta.horarioConsulta;
         document.getElementById("recomendacoes").value = consulta.recomendacoes;
 
-        excluirConsulta(nomePaciente); // Exclui a consulta antiga para permitir a alteração
+        // Remove a consulta original para permitir atualização
+        consultas = consultas.filter(c => c.nomePaciente !== nomePaciente);
+        atualizarConsultas();
     }
 }
-
-// Carregar consultas salvas ao iniciar a página
-document.addEventListener("DOMContentLoaded", function() {
-    atualizarConsultas();
-});
