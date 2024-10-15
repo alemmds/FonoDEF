@@ -3,14 +3,28 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f4; /* Fundo leve */
 }
 
+/* Estilo para o cabeçalho */
+header {
+    background-color: #007BFF; /* Cor do cabeçalho */
+    color: white; /* Cor do texto do cabeçalho */
+    padding: 20px;
+    text-align: center;
+}
+
+/* Estilo para o container principal */
 .container {
     padding: 20px;
 }
 
 /* Estilo para o formulário */
 form {
+    background: white; /* Fundo branco para o formulário */
+    padding: 20px;
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
     margin-bottom: 20px;
 }
 
@@ -20,6 +34,16 @@ form {
     font-size: 20px; /* Aumenta o tamanho da fonte */
     margin: 5px; /* Adiciona um espaço ao redor do botão */
     cursor: pointer; /* Muda o cursor ao passar o mouse */
+    background-color: #28a745; /* Cor do botão */
+    color: white; /* Cor do texto do botão */
+    border: none; /* Remove a borda padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    transition: background-color 0.3s; /* Transição suave */
+}
+
+/* Efeito hover para os botões */
+.button-dia:hover {
+    background-color: #218838; /* Cor ao passar o mouse */
 }
 
 /* Estilo para as consultas na vertical */
@@ -27,6 +51,8 @@ form {
     border: 1px solid #ccc; /* Adiciona uma borda */
     padding: 10px; /* Espaço interno */
     margin-bottom: 10px; /* Espaço entre consultas */
+    background-color: #ffffff; /* Fundo branco para consultas */
+    border-radius: 5px; /* Bordas arredondadas */
 }
 
 /* Estilo para as informações do paciente na vertical */
@@ -40,6 +66,7 @@ form {
     margin-top: 20px; /* Espaço acima do mês */
 }
 
+/* Detalhes do mês ocultos inicialmente */
 .details {
     display: none; /* Esconde os detalhes inicialmente */
     margin-left: 20px; /* Espaço à esquerda para os detalhes */
