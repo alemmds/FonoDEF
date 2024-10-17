@@ -5,7 +5,7 @@ body {
     margin: 20px;
 }
 
-h2, h3 {
+h1, h2, h3 {
     color: #4285F4;
 }
 
@@ -49,4 +49,9 @@ li {
     margin: 5px 0;
     border-radius: 4px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
 }
