@@ -1,63 +1,62 @@
 document.getElementById('consultaForm').addEventListener('submit', function(event) {
     event.preventDefault();
+    
+    const nome = document.getElementById('nome').value;
+    const responsavel = document.getElementById('responsavel').value;
+    const idade = document.getElementById('idade').value;
+    const telefone = document.getElementById('telefone').value;
+    const especialidade = document.getElementById('especialidade').value;
+    const data = document.getElementById('data').value;
+    const horario = document.getElementById('horario').value;
 
-    const consulta = {
-        nomePaciente: document.getElementById('nomePaciente').value,
-        responsavel: document.getElementById('responsavel').value,
-        idade: document.getElementById('idade').value,
-        telefone: document.getElementById('telefone').value,
-        especialidade: document.getElementById('especialidade').value,
-        consultorio: document.getElementById('consultorio').value,
-        dataConsulta: document.getElementById('dataConsulta').value,
-        horarioConsulta: document.getElementById('horarioConsulta').value
-    };
+    // Salvar consulta em localStorage ou enviar para o servidor
+    const consultas = JSON.parse(localStorage.getItem('consultas')) || [];
+    const novaConsulta = { nome, responsavel, idade, telefone, especialidade, data, horario };
+    consultas.push(novaConsulta);
+    localStorage.setItem('consultas', JSON.stringify(consultas));
 
-    salvarConsulta(consulta);
-    exibirConsultasResumo();
+    alert('Consulta salva com sucesso!');
+    this.reset();
 });
 
-function salvarConsulta(consulta) {
-    let consultas = JSON.parse(localStorage.getItem('consultas')) || [];
-    consultas.push(consulta);
-    localStorage.setItem('consultas', JSON.stringify(consultas));
-    alert('Consulta salva com sucesso!');
-}
+document.getElementById('consultasDiarias').addEventListener('click', function() {
+    mostrarConsultas('diarias');
+});
 
-function exibirConsultasResumo() {
+document.getElementById('consultasMes').addEventListener('click', function() {
+    mostrarConsultas('mes');
+});
+
+function mostrarConsultas(tipo) {
     const consultas = JSON.parse(localStorage.getItem('consultas')) || [];
-    const resumoDiv = document.getElementById('consultasResumo');
-    resumoDiv.innerHTML = '';
+    let resultadoHTML = '';
 
-    consultas.forEach((consulta, index) => {
-        resumoDiv.innerHTML += `
-            <div class="consulta">
-                <p><strong>${consulta.nomePaciente}</strong> - ${consulta.especialidade} em ${consulta.dataConsulta} às ${consulta.horarioConsulta}</p>
-                <button onclick="editarConsulta(${index})">Editar</button>
-                <button onclick="excluirConsulta(${index})">Excluir</button>
-            </div>
-        `;
-    });
+    if (consultas.length === 0) {
+        resultadoHTML = '<p>Nenhuma consulta encontrada.</p>';
+    } else {
+        consultas.forEach(consulta => {
+            resultadoHTML += `
+                <div class="consulta-item">
+                    <p><strong>Nome:</strong> ${consulta.nome}</p>
+                    <p><strong>Responsável:</strong> ${consulta.responsavel}</p>
+                    <p><strong>Idade:</strong> ${consulta.idade}</p>
+                    <p><strong>Telefone:</strong> ${consulta.telefone}</p>
+                    <p><strong>Especialidade:</strong> ${consulta.especialidade}</p>
+                    <p><strong>Data:</strong> ${consulta.data}</p>
+                    <p><strong>Horário:</strong> ${consulta.horario}</p>
+                    <button class="excluir" onclick="excluirConsulta('${consulta.nome}')">Excluir</button>
+                </div>
+            `;
+        });
+    }
+
+    document.getElementById('listaConsultas').innerHTML = resultadoHTML;
 }
 
-function editarConsulta(index) {
+function excluirConsulta(nome) {
     const consultas = JSON.parse(localStorage.getItem('consultas')) || [];
-    const consulta = consultas[index];
-
-    document.getElementById('nomePaciente').value = consulta.nomePaciente;
-    document.getElementById('responsavel').value = consulta.responsavel;
-    document.getElementById('idade').value = consulta.idade;
-    document.getElementById('telefone').value = consulta.telefone;
-    document.getElementById('especialidade').value = consulta.especialidade;
-    document.getElementById('consultorio').value = consulta.consultorio;
-    document.getElementById('dataConsulta').value = consulta.dataConsulta;
-    document.getElementById('horarioConsulta').value = consulta.horarioConsulta;
-
-    excluirConsulta(index);  // Remove para que a edição seja gravada como nova
-}
-
-function excluirConsulta(index) {
-    let consultas = JSON.parse(localStorage.getItem('consultas')) || [];
-    consultas.splice(index, 1);
-    localStorage.setItem('consultas', JSON.stringify(consultas));
-    exibirConsultasResumo();
+    const novasConsultas = consultas.filter(consulta => consulta.nome !== nome);
+    localStorage.setItem('consultas', JSON.stringify(novasConsultas));
+    alert('Consulta excluída com sucesso!');
+    mostrarConsultas();
 }
