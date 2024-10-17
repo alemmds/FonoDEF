@@ -3,74 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento de Consultas</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Gerenciamento de Consultas - FonoClinic</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Gerenciamento de Consultas</h1>
+    <h1>Gerenciamento de Consultas - FonoClinic</h1>
 
-        <!-- Filtro de Consultas -->
-        <div id="filtro-consultas">
-            <h2>Filtro de Consultas</h2>
-            <div class="form-group">
-                <label for="especialidade">Especialidade:</label>
-                <input type="text" id="especialidade">
-            </div>
-            <div class="form-group">
-                <label for="data-consulta">Data:</label>
-                <input type="date" id="data-consulta">
-            </div>
-            <button class="btn" onclick="filtrarConsultas()">Confirmar</button>
-        </div>
+    <!-- Filtro de Consultas -->
+    <section id="filtro-consultas">
+        <h2>Filtro de Consultas</h2>
+        <label for="especialidade">Especialidade:</label>
+        <input type="text" id="especialidade" name="especialidade">
+        <label for="data-consulta">Data:</label>
+        <input type="date" id="data-consulta" name="data-consulta">
+        <button id="confirmar">Confirmar</button>
+    </section>
 
-        <!-- Cadastro de Consultas -->
-        <div id="cadastro-consultas">
-            <h2>Cadastro de Consultas</h2>
-            <div class="form-group">
-                <label for="nome-paciente">Nome do Paciente:</label>
-                <input type="text" id="nome-paciente">
-            </div>
-            <div class="form-group">
-                <label for="responsavel">Responsável:</label>
-                <input type="text" id="responsavel">
-            </div>
-            <div class="form-group">
-                <label for="idade">Idade:</label>
-                <input type="number" id="idade">
-            </div>
-            <div class="form-group">
-                <label for="telefone">Telefone:</label>
-                <input type="tel" id="telefone">
-            </div>
-            <div class="form-group">
-                <label for="especialista">Especialista:</label>
-                <input type="text" id="especialista">
-            </div>
-            <div class="form-group">
-                <label for="consultorio">Consultório:</label>
-                <input type="text" id="consultorio">
-            </div>
-            <div class="form-group">
-                <label for="data-consulta">Data da Consulta:</label>
-                <input type="date" id="data-consulta-cadastro">
-            </div>
-            <div class="form-group">
-                <label for="hora-consulta">Horário da Consulta:</label>
-                <input type="time" id="hora-consulta">
-            </div>
-            <button class="btn" id="salvarConsulta" onclick="salvarConsulta()">Salvar Consulta</button>
-        </div>
+    <!-- Cadastro de Consultas -->
+    <section id="cadastro-consultas">
+        <h2>Cadastro de Consultas</h2>
+        <form id="form-consulta">
+            <label for="nome-paciente">Nome do Paciente:</label>
+            <input type="text" id="nome-paciente" name="nome-paciente">
+            <label for="responsavel">Responsável:</label>
+            <input type="text" id="responsavel" name="responsavel">
+            <label for="idade">Idade:</label>
+            <input type="number" id="idade" name="idade">
+            <label for="telefone">Telefone:</label>
+            <input type="text" id="telefone" name="telefone">
+            <label for="especialidade-cadastro">Especialidade:</label>
+            <input type="text" id="especialidade-cadastro" name="especialidade-cadastro">
+            <label for="consultorio">Consultório:</label>
+            <select id="consultorio" name="consultorio">
+                <option value="Consultório 1">Consultório 1</option>
+                <option value="Consultório 2">Consultório 2</option>
+            </select>
+            <label for="data-consulta-cadastro">Data da Consulta:</label>
+            <input type="date" id="data-consulta-cadastro" name="data-consulta-cadastro">
+            <label for="hora-consulta">Horário da Consulta:</label>
+            <input type="time" id="hora-consulta" name="hora-consulta">
+            <label for="recomendacoes">Recomendações:</label>
+            <textarea id="recomendacoes" name="recomendacoes"></textarea>
+            <button type="button" id="salvar-consulta">Salvar Consulta</button>
+        </form>
+    </section>
 
-        <!-- Consultas por Mês e Dia -->
-        <div id="consultas-mes">
-            <h2>Consultas por Mês</h2>
-            <div id="consultasPorMes"></div> <!-- Onde os meses serão exibidos -->
-            <div id="diasDoMes"></div> <!-- Onde os dias dos meses serão exibidos -->
-        </div>
+    <!-- Consultas Diárias -->
+    <section id="consultas-diarias">
+        <h2>Consultas do Dia</h2>
+        <div id="consultas-dia-content"></div>
+    </section>
 
-        <div id="resultadoConsulta"></div>
-    </div>
+    <!-- Consultas Mensais -->
+    <section id="consultas-mensais">
+        <h2>Consultas por Mês</h2>
+        <div id="consultas-mes-content"></div>
+    </section>
 
     <script src="script.js"></script>
 </body>
