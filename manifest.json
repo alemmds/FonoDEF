@@ -1,21 +1,15 @@
-
 {
-    "name": "App de Gerenciamento de Consultas",
-    "short_name": "Consultas",
-    "start_url": "/index.html",
+    "name": "FonoClinic",
+    "short_name": "FonoClinic",
+    "start_url": "index.html",
     "display": "standalone",
     "background_color": "#ffffff",
-    "theme_color": "#4CAF50",
-    "description": "App para gerenciar consultas médicas com filtro de especialidade, data e horário.",
+    "theme_color": "#4285f4",
+    "description": "Aplicativo para gerenciamento de consultas na FonoClinic.",
     "icons": [
         {
             "src": "icon.png",
             "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "icon-large.png",
-            "sizes": "512x512",
             "type": "image/png"
         }
     ]
