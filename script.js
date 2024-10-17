@@ -5,6 +5,7 @@ const consultasDiarias = document.getElementById("consultasDiarias");
 
 let consultas = [];
 
+// Evento para o botão de salvar consulta
 saveButton.addEventListener("click", function() {
     const nome = document.getElementById("nome").value;
     const responsavel = document.getElementById("responsavel").value;
@@ -14,6 +15,7 @@ saveButton.addEventListener("click", function() {
     const dataConsulta = document.getElementById("dataConsulta").value;
     const horarioConsulta = document.getElementById("horarioConsulta").value;
 
+    // Validação dos campos
     if (nome && responsavel && idade && telefone && especialidade && dataConsulta && horarioConsulta) {
         const consulta = {
             nome,
@@ -34,6 +36,7 @@ saveButton.addEventListener("click", function() {
     }
 });
 
+// Evento para o botão de filtro
 filterButton.addEventListener("click", function() {
     const especialidadeFiltro = document.getElementById("especialidade").value;
     const dataFiltro = document.getElementById("data").value;
@@ -48,6 +51,7 @@ filterButton.addEventListener("click", function() {
     displayFilteredResults(resultados);
 });
 
+// Função para atualizar as consultas
 function updateConsultas() {
     consultasDoMes.innerHTML = "";
     consultasDiarias.innerHTML = "";
@@ -76,6 +80,7 @@ function updateConsultas() {
     });
 }
 
+// Função para mostrar consultas de um dia específico
 function showDay(dia, data) {
     const diaConsultas = consultas.filter(consulta => consulta.data === data);
     const resultDiv = document.createElement("div");
@@ -86,8 +91,8 @@ function showDay(dia, data) {
     consultasDoMes.appendChild(resultDiv);
 }
 
+// Função para exibir os resultados filtrados
 function displayFilteredResults(resultados) {
-    // Limpa resultados anteriores
     const resultadoDiv = document.createElement("div");
     resultadoDiv.innerHTML = "<h3>Resultados do Filtro:</h3>";
     
@@ -101,6 +106,7 @@ function displayFilteredResults(resultados) {
     consultasDoMes.appendChild(resultadoDiv);
 }
 
+// Função para limpar os campos após o cadastro
 function clearFields() {
     document.getElementById("nome").value = "";
     document.getElementById("responsavel").value = "";
@@ -111,26 +117,24 @@ function clearFields() {
     document.getElementById("horarioConsulta").value = "";
 }
 
+// Função para editar uma consulta
 function editConsulta(nome) {
-    // Função para editar a consulta
     const consulta = consultas.find(c => c.nome === nome);
     if (consulta) {
-        // Exibir os dados da consulta nos campos
         document.getElementById("nome").value = consulta.nome;
         document.getElementById("responsavel").value = consulta.responsavel;
         document.getElementById("idade").value = consulta.idade;
         document.getElementById("telefone").value = consulta.telefone;
         document.getElementById("especialidadeCadastro").value = consulta.especialidade;
         document.getElementById("dataConsulta").value = consulta.data;
-        document.getElementById("horarioConsulta
-
-").value = consulta.horario;
+        document.getElementById("horarioConsulta").value = consulta.horario;
         
         // Remover a consulta atual do array
         deleteConsulta(nome);
     }
 }
 
+// Função para excluir uma consulta
 function deleteConsulta(nome) {
     consultas = consultas.filter(c => c.nome !== nome);
     updateConsultas();
