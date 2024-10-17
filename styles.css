@@ -1,80 +1,83 @@
-/* Estilos básicos para a página */
+/* Estilos básicos da página */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
     margin: 0;
     padding: 20px;
-    background-color: #f4f4f4;
 }
 
 header {
-    background: #007bff;
+    text-align: center;
+    background-color: #4285f4;
     color: white;
     padding: 10px 0;
-    text-align: center;
-    font-size: 24px;
+    margin-bottom: 30px;
 }
 
-/* Contêiner para todo o formulário */
+h1, h2 {
+    font-weight: 500;
+}
+
+/* Contêiner principal do formulário */
 .form-container {
-    background-color: #fff;
+    background-color: white;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     max-width: 800px;
     margin: 0 auto;
 }
 
-/* Estilos das seções de filtro, cadastro e resultados */
+/* Estilos para seções de formulário */
 .filter-section, .cadastro-section, .resultados-section, .consultas-mes-section {
     margin-bottom: 30px;
 }
 
-/* Formulários */
-form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
-    margin-bottom: 20px;
+.form-group {
+    margin-bottom: 15px;
 }
 
 label {
-    grid-column: span 1;
+    font-size: 14px;
+    color: #202124;
+    display: block;
     margin-bottom: 5px;
 }
 
 input[type="text"], input[type="number"], input[type="date"], input[type="time"] {
-    grid-column: span 1;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
     width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #dadce0;
+    border-radius: 5px;
+    background-color: #fff;
+    box-sizing: border-box;
 }
 
-button {
-    grid-column: span 2;
-    padding: 10px;
-    background-color: #007bff;
+input[type="text"]:focus, input[type="number"]:focus, input[type="date"]:focus, input[type="time"]:focus {
+    border-color: #4285f4;
+    outline: none;
+    box-shadow: 0 0 5px rgba(66, 133, 244, 0.5);
+}
+
+.submit-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4285f4;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #0056b3;
+.submit-button:hover {
+    background-color: #357ae8;
 }
 
-/* Resultados e consultas do mês */
-#resultadoFiltro, #consultasMes {
+footer {
+    text-align: center;
     margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Consultas do mês - estilo dos botões */
-#consultasMes button {
-    padding: 10px;
-    margin-bottom: 5px;
-    font-size: 16px;
+    font-size: 12px;
+    color: #5f6368;
 }
