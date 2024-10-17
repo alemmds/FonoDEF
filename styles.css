@@ -1,29 +1,32 @@
-/* Estilos Globais */
-body {
-    font-family: Arial, sans-serif;
+* {
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
     text-align: center;
-    color: #2c3e50;
-    margin-top: 20px;
+    color: #333;
 }
 
 h2 {
-    color: #34495e;
-}
-
-.container {
-    width: 90%;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    margin-bottom: 10px;
+    color: #007BFF;
 }
 
 .form-group {
@@ -31,181 +34,44 @@ h2 {
 }
 
 label {
-    font-weight: bold;
     display: block;
     margin-bottom: 5px;
+    font-weight: bold;
 }
 
-input[type="text"],
-input[type="number"],
-input[type="tel"],
-input[type="date"],
-input[type="time"],
-textarea,
-select {
+input, select, textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    box-sizing: border-box;
 }
 
 textarea {
-    resize: vertical;
+    height: 100px;
 }
 
 button.btn {
-    display: inline-block;
-    padding: 10px 15px;
-    background-color: #007bff;
+    background-color: #007BFF;
     color: white;
     border: none;
-    border-radius: 5px;
+    padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
+    border-radius: 5px;
 }
 
 button.btn:hover {
     background-color: #0056b3;
 }
 
-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
-/* Seção de Filtro */
-#filtro-consultas {
-    margin-bottom: 30px;
-    padding: 20px;
-    background-color: #e3f2fd;
-    border: 1px solid #90caf9;
-    border-radius: 5px;
-}
-
-#filtroResultados {
-    margin-top: 15px;
-    background-color: #f5f5f5;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-/* Seção de Cadastro de Consultas */
-#cadastro-consultas {
-    margin-bottom: 30px;
-}
-
-button#salvarConsulta {
-    margin-top: 10px;
-    background-color: #28a745;
-    color: white;
-}
-
-button#salvarConsulta:hover {
-    background-color: #218838;
-}
-
-/* Seção Consultas por Mês */
-#consultas-mes {
-    margin-top: 30px;
-}
-
-#consultasPorMes h3 {
-    font-size: 18px;
-    color: #007bff;
-    margin-bottom: 10px;
-}
-
-/* Botões dos dias */
-.button-dia {
-    display: inline-block;
-    padding: 10px 15px;
-    background-color: #17a2b8;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    margin: 5px 5px 10px 0;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.button-dia:hover {
-    background-color: #138496;
-}
-
-/* Estilos para exibir as consultas */
-#resultadoConsulta {
+#filtroResultados, #consultasHoje, #consultasPorMes {
     margin-top: 20px;
 }
 
-#resultadoConsulta .consulta {
-    padding: 15px;
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
+.consulta {
+    background-color: #e9ecef;
+    padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;
-}
-
-#resultadoConsulta .consulta strong {
-    font-size: 18px;
-    color: #333;
-}
-
-#resultadoConsulta .consulta button.edit-btn,
-#resultadoConsulta .consulta button.delete-btn {
-    margin-top: 10px;
-    padding: 8px 12px;
-    font-size: 14px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-button.edit-btn {
-    background-color: #007bff;
-    color: white;
-}
-
-button.edit-btn:hover {
-    background-color: #0056b3;
-}
-
-button.delete-btn {
-    background-color: #dc3545;
-    color: white;
-}
-
-button.delete-btn:hover {
-    background-color: #c82333;
-}
-
-/* Responsividade */
-@media screen and (max-width: 768px) {
-    .container {
-        width: 100%;
-    }
-
-    input[type="text"],
-    input[type="number"],
-    input[type="tel"],
-    input[type="date"],
-    input[type="time"],
-    textarea,
-    select {
-        font-size: 14px;
-    }
-
-    button.btn, .button-dia {
-        font-size: 14px;
-    }
-
-    h1 {
-        font-size: 24px;
-    }
-
-    h2 {
-        font-size: 18px;
-    }
 }
