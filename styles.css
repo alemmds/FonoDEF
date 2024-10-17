@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f9f9f9;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
 }
@@ -15,51 +15,46 @@ body {
 header h1 {
     text-align: center;
     color: #4CAF50;
-    font-size: 1.8em;
+    font-size: 2em;
     margin-bottom: 20px;
 }
 
-/* Estilo para o formulário horizontal */
-.formulario-horizontal {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+/* Estilo Google Forms com layout horizontal */
+.formulario-google-forms {
     background-color: white;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.formulario-horizontal h2 {
-    width: 100%;
+h2 {
     color: #4CAF50;
     margin-bottom: 20px;
     text-align: center;
 }
 
-/* Grupo de campos com molduras retangulares */
+/* Grupo de campos organizados horizontalmente */
 .grupo-campos {
     display: flex;
-    flex-direction: column;
-    width: 48%;
+    justify-content: space-between;
     margin-bottom: 20px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f7f7f7;
+}
+
+.campo {
+    flex: 0 0 48%;
+    display: flex;
+    flex-direction: column;
 }
 
 label {
-    margin-bottom: 5px;
     font-weight: bold;
-    color: #333;
+    margin-bottom: 5px;
 }
 
-input {
+input, select {
     padding: 10px;
-    margin-bottom: 10px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 5px;
     font-size: 1em;
     width: 100%;
 }
@@ -69,7 +64,7 @@ input {
     color: white;
     padding: 10px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
     width: 100%;
     font-size: 1.1em;
@@ -79,7 +74,7 @@ input {
     background-color: #45a049;
 }
 
-/* Estilo dos botões secundários */
+/* Botões secundários */
 .botoes-secundarios {
     display: flex;
     justify-content: space-between;
@@ -91,7 +86,7 @@ input {
     color: #333;
     padding: 10px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
     width: 48%;
 }
@@ -104,6 +99,6 @@ input {
     margin-top: 30px;
     background-color: white;
     padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
