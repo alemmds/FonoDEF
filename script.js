@@ -1,63 +1,63 @@
 document.getElementById('consultaForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    const nomePaciente = document.getElementById('nomePaciente').value;
-    const responsavel = document.getElementById('responsavel').value;
-    const idade = document.getElementById('idade').value;
-    const telefone = document.getElementById('telefone').value;
-    const especialidade = document.getElementById('especialidade').value;
-    const consultorio = document.getElementById('consultorio').value;
-    const dataConsulta = document.getElementById('dataConsulta').value;
-    const horarioConsulta = document.getElementById('horarioConsulta').value;
-
     const consulta = {
-        nomePaciente,
-        responsavel,
-        idade,
-        telefone,
-        especialidade,
-        consultorio,
-        dataConsulta,
-        horarioConsulta
+        nomePaciente: document.getElementById('nomePaciente').value,
+        responsavel: document.getElementById('responsavel').value,
+        idade: document.getElementById('idade').value,
+        telefone: document.getElementById('telefone').value,
+        especialidade: document.getElementById('especialidade').value,
+        consultorio: document.getElementById('consultorio').value,
+        dataConsulta: document.getElementById('dataConsulta').value,
+        horarioConsulta: document.getElementById('horarioConsulta').value
     };
 
     salvarConsulta(consulta);
-    exibirConsultasDia();
+    exibirConsultasResumo();
 });
 
 function salvarConsulta(consulta) {
     let consultas = JSON.parse(localStorage.getItem('consultas')) || [];
     consultas.push(consulta);
     localStorage.setItem('consultas', JSON.stringify(consultas));
+    alert('Consulta salva com sucesso!');
 }
 
-function exibirConsultasDia() {
+function exibirConsultasResumo() {
     const consultas = JSON.parse(localStorage.getItem('consultas')) || [];
-    const consultasDia = consultas.filter(consulta => consulta.dataConsulta === new Date().toISOString().split('T')[0]);
-    
-    const consultasDiaDiv = document.getElementById('consultasDia');
-    consultasDiaDiv.innerHTML = consultasDia.length ? '<h2>Consultas de Hoje</h2>' : '';
+    const resumoDiv = document.getElementById('consultasResumo');
+    resumoDiv.innerHTML = '';
 
-    consultasDia.forEach(consulta => {
-        consultasDiaDiv.innerHTML += `
-            <p><strong>${consulta.nomePaciente}</strong> - ${consulta.especialidade} às ${consulta.horarioConsulta}</p>
+    consultas.forEach((consulta, index) => {
+        resumoDiv.innerHTML += `
+            <div class="consulta">
+                <p><strong>${consulta.nomePaciente}</strong> - ${consulta.especialidade} em ${consulta.dataConsulta} às ${consulta.horarioConsulta}</p>
+                <button onclick="editarConsulta(${index})">Editar</button>
+                <button onclick="excluirConsulta(${index})">Excluir</button>
+            </div>
         `;
     });
 }
 
-document.getElementById('btnHoje').addEventListener('click', exibirConsultasDia);
-document.getElementById('btnConsultasMes').addEventListener('click', exibirConsultasMes);
-
-function exibirConsultasMes() {
+function editarConsulta(index) {
     const consultas = JSON.parse(localStorage.getItem('consultas')) || [];
-    const consultasMes = consultas.filter(consulta => new Date(consulta.dataConsulta).getMonth() === new Date().getMonth());
-    
-    const consultasMesDiv = document.getElementById('consultasMes');
-    consultasMesDiv.innerHTML = consultasMes.length ? '<h2>Consultas do Mês</h2>' : '';
+    const consulta = consultas[index];
 
-    consultasMes.forEach(consulta => {
-        consultasMesDiv.innerHTML += `
-            <p><strong>${consulta.nomePaciente}</strong> - ${consulta.especialidade} no dia ${consulta.dataConsulta}</p>
-        `;
-    });
+    document.getElementById('nomePaciente').value = consulta.nomePaciente;
+    document.getElementById('responsavel').value = consulta.responsavel;
+    document.getElementById('idade').value = consulta.idade;
+    document.getElementById('telefone').value = consulta.telefone;
+    document.getElementById('especialidade').value = consulta.especialidade;
+    document.getElementById('consultorio').value = consulta.consultorio;
+    document.getElementById('dataConsulta').value = consulta.dataConsulta;
+    document.getElementById('horarioConsulta').value = consulta.horarioConsulta;
+
+    excluirConsulta(index);  // Remove para que a edição seja gravada como nova
+}
+
+function excluirConsulta(index) {
+    let consultas = JSON.parse(localStorage.getItem('consultas')) || [];
+    consultas.splice(index, 1);
+    localStorage.setItem('consultas', JSON.stringify(consultas));
+    exibirConsultasResumo();
 }
