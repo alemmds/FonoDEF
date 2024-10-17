@@ -1,141 +1,98 @@
-const saveButton = document.getElementById("saveButton");
-const filterButton = document.getElementById("filterButton");
-const consultasDoMes = document.getElementById("consultasDoMes");
-const consultasDiarias = document.getElementById("consultasDiarias");
+const consultaForm = document.getElementById('consultaForm');
+const consultasDoMes = document.getElementById('consultasPorMes');
+const consultasDiariasContainer = document.getElementById('consultasDiariasContainer');
+const filtroButton = document.getElementById('confirmarFiltro');
+const resultadosDoFiltro = document.getElementById('resultadosDoFiltro');
 
 let consultas = [];
 
-// Evento para o botão de salvar consulta
-saveButton.addEventListener("click", function() {
-    const nome = document.getElementById("nome").value;
-    const responsavel = document.getElementById("responsavel").value;
-    const idade = document.getElementById("idade").value;
-    const telefone = document.getElementById("telefone").value;
-    const especialidade = document.getElementById("especialidadeCadastro").value;
-    const dataConsulta = document.getElementById("dataConsulta").value;
-    const horarioConsulta = document.getElementById("horarioConsulta").value;
+// Função para salvar consulta
+consultaForm.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-    // Validação dos campos
-    if (nome && responsavel && idade && telefone && especialidade && dataConsulta && horarioConsulta) {
-        const consulta = {
-            nome,
-            responsavel,
-            idade,
-            telefone,
-            especialidade,
-            data: dataConsulta,
-            horario: horarioConsulta
-        };
+    const nome = document.getElementById('nome').value;
+    const especialidade = document.getElementById('especialidade').value;
+    const data = document.getElementById('data').value;
+    const horario = document.getElementById('horario').value;
+    const consultorio = document.getElementById('consultorio').value;
+    const idade = document.getElementById('idade').value;
 
-        consultas.push(consulta);
-        updateConsultas();
-        alert("Consulta salva com sucesso!");
-        clearFields();
-    } else {
-        alert("Por favor, preencha todos os campos.");
-    }
+    const novaConsulta = {
+        nome, especialidade, data, horario, consultorio, idade, status: 'Disponível'
+    };
+
+    consultas.push(novaConsulta);
+    updateConsultas();
+    consultaForm.reset();
 });
 
-// Evento para o botão de filtro
-filterButton.addEventListener("click", function() {
-    const especialidadeFiltro = document.getElementById("especialidade").value;
-    const dataFiltro = document.getElementById("data").value;
-    const horarioFiltro = document.getElementById("horario").value;
-
-    const resultados = consultas.filter(consulta => {
-        return (!especialidadeFiltro || consulta.especialidade === especialidadeFiltro) &&
-               (!dataFiltro || consulta.data === dataFiltro) &&
-               (!horarioFiltro || consulta.horario === horarioFiltro);
-    });
-
-    displayFilteredResults(resultados);
-});
-
-// Função para atualizar as consultas
+// Função para exibir consultas cadastradas
 function updateConsultas() {
-    consultasDoMes.innerHTML = "";
-    consultasDiarias.innerHTML = "";
-    const hoje = new Date().toISOString().split("T")[0];
-    
+    consultasDoMes.innerHTML = '';
+    consultasDiariasContainer.innerHTML = '';
+
     consultas.forEach(consulta => {
         const dia = new Date(consulta.data).getDate();
         const mes = new Date(consulta.data).getMonth() + 1;
         const ano = new Date(consulta.data).getFullYear();
 
-        // Adiciona a consulta ao mês
-        let mesDiv = document.getElementById(`mes${mes}`);
-        if (!mesDiv) {
-            mesDiv = document.createElement("div");
-            mesDiv.id = `mes${mes}`;
-            mesDiv.innerHTML = `<h3>Mês: ${mes}/${ano}</h3>`;
-            consultasDoMes.appendChild(mesDiv);
-        }
-        
-        mesDiv.innerHTML += `<button onclick="showDay(${dia}, '${consulta.data}')">${dia}</button>`;
-
-        // Adiciona a consulta ao dia
-        if (consulta.data === hoje) {
-            consultasDiarias.innerHTML += `<div>${consulta.nome} - ${consulta.horario} <button onclick="editConsulta('${consulta.nome}')">Editar</button><button onclick="deleteConsulta('${consulta.nome}')">Excluir</button></div>`;
-        }
+        let consultaDiv = document.createElement('div');
+        consultaDiv.innerHTML = `
+            <strong>Data:</strong> ${dia}/${mes}/${ano} - <strong>Horário:</strong> ${consulta.horario} <br>
+            <strong>Paciente:</strong> ${consulta.nome}, <strong>Idade:</strong> ${consulta.idade}, 
+            <strong>Consultório:</strong> ${consulta.consultorio}<br>
+            <button class="edit-btn" onclick="editConsulta('${consulta.nome}')">Alterar</button>
+            <button class="delete-btn" onclick="deleteConsulta('${consulta.nome}')">Excluir</button>
+        `;
+        consultasDoMes.appendChild(consultaDiv);
     });
 }
 
-// Função para mostrar consultas de um dia específico
-function showDay(dia, data) {
-    const diaConsultas = consultas.filter(consulta => consulta.data === data);
-    const resultDiv = document.createElement("div");
-    resultDiv.innerHTML = `<h4>Consultas do dia ${dia}:</h4>`;
-    diaConsultas.forEach(consulta => {
-        resultDiv.innerHTML += `<div>${consulta.nome} - ${consulta.horario} <button onclick="editConsulta('${consulta.nome}')">Editar</button><button onclick="deleteConsulta('${consulta.nome}')">Excluir</button></div>`;
-    });
-    consultasDoMes.appendChild(resultDiv);
-}
+// Função para filtrar consultas por especialidade, data e horário
+filtroButton.addEventListener('click', function () {
+    const especialidade = document.getElementById('filtroEspecialidade').value;
+    const data = document.getElementById('filtroData').value;
+    const horario = document.getElementById('filtroHorario').value;
 
-// Função para exibir os resultados filtrados
+    const resultados = consultas.filter(consulta => {
+        return (!especialidade || consulta.especialidade === especialidade) &&
+               (!data || consulta.data === data) &&
+               (!horario || consulta.horario === horario);
+    });
+
+    displayFilteredResults(resultados);
+});
+
+// Exibir resultados filtrados
 function displayFilteredResults(resultados) {
-    const resultadoDiv = document.createElement("div");
-    resultadoDiv.innerHTML = "<h3>Resultados do Filtro:</h3>";
-    
+    resultadosDoFiltro.innerHTML = '';
     if (resultados.length > 0) {
         resultados.forEach(consulta => {
-            resultadoDiv.innerHTML += `<div>${consulta.nome} - ${consulta.data} ${consulta.horario}</div>`;
+            resultadosDoFiltro.innerHTML += `
+                <div>
+                    Paciente: ${consulta.nome} - ${consulta.data} ${consulta.horario} - Status: ${consulta.status}
+                </div>`;
         });
     } else {
-        resultadoDiv.innerHTML += "<div>Nenhum resultado encontrado.</div>";
-    }
-    consultasDoMes.appendChild(resultadoDiv);
-}
-
-// Função para limpar os campos após o cadastro
-function clearFields() {
-    document.getElementById("nome").value = "";
-    document.getElementById("responsavel").value = "";
-    document.getElementById("idade").value = "";
-    document.getElementById("telefone").value = "";
-    document.getElementById("especialidadeCadastro").value = "";
-    document.getElementById("dataConsulta").value = "";
-    document.getElementById("horarioConsulta").value = "";
-}
-
-// Função para editar uma consulta
-function editConsulta(nome) {
-    const consulta = consultas.find(c => c.nome === nome);
-    if (consulta) {
-        document.getElementById("nome").value = consulta.nome;
-        document.getElementById("responsavel").value = consulta.responsavel;
-        document.getElementById("idade").value = consulta.idade;
-        document.getElementById("telefone").value = consulta.telefone;
-        document.getElementById("especialidadeCadastro").value = consulta.especialidade;
-        document.getElementById("dataConsulta").value = consulta.data;
-        document.getElementById("horarioConsulta").value = consulta.horario;
-        
-        // Remover a consulta atual do array
-        deleteConsulta(nome);
+        resultadosDoFiltro.innerHTML = "<div>Nenhum resultado encontrado.</div>";
     }
 }
 
 // Função para excluir uma consulta
 function deleteConsulta(nome) {
-    consultas = consultas.filter(c => c.nome !== nome);
+    consultas = consultas.filter(consulta => consulta.nome !== nome);
     updateConsultas();
+}
+
+// Função para editar uma consulta (abrir formulário com dados da consulta)
+function editConsulta(nome) {
+    const consulta = consultas.find(consulta => consulta.nome === nome);
+    if (consulta) {
+        document.getElementById('nome').value = consulta.nome;
+        document.getElementById('especialidade').value = consulta.especialidade;
+        document.getElementById('data').value = consulta.data;
+        document.getElementById('horario').value = consulta.horario;
+        document.getElementById('consultorio').value = consulta.consultorio;
+        document.getElementById('idade').value = consulta.idade;
+    }
 }
