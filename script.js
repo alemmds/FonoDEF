@@ -73,36 +73,29 @@ function atualizarConsultas() {
         meses[chave].push(consulta);
     });
 
-    for (const [mesAno, consultasMes] of Object.entries(meses)) {
+    for (const [mesAno, consultasDoMes] of Object.entries(meses)) {
         const mesDiv = document.createElement("div");
-        mesDiv.className = "consulta";
-        mesDiv.innerHTML = `<strong>${mesAno}</strong> <button onclick="toggleDetails('${mesAno}')">Ver</button>`;
-
-        const detalhesDiv = document.createElement("div");
-        detalhesDiv.className = "details";
-        detalhesDiv.id = mesAno;
-
-        consultasMes.forEach(consulta => {
+        mesDiv.innerHTML = `<h3>${mesAno}</h3>`;
+        consultasDoMes.forEach(consulta => {
             const consultaDiv = document.createElement("div");
+            consultaDiv.className = "consulta";
             consultaDiv.innerHTML = `
-                <div class="consulta">
-                    <strong>${consulta.nomePaciente}</strong><br>
-                    Responsável: ${consulta.responsavel}<br>
-                    Especialista: ${consulta.especialista}<br>
-                    Horário: ${consulta.horarioConsulta}<br>
-                </div>
+                <strong>${consulta.nomePaciente}</strong><br>
+                Data: ${consulta.dataConsulta}<br>
+                Especialista: ${consulta.especialista}<br>
+                Horário: ${consulta.horarioConsulta}<br>
+                <button class="alterar" onclick="alterarConsulta('${consulta.nomePaciente}')">Alterar</button>
+                <button class="excluir" onclick="excluirConsulta('${consulta.nomePaciente}')">Excluir</button>
             `;
-            detalhesDiv.appendChild(consultaDiv);
+            mesDiv.appendChild(consultaDiv);
         });
-
-        mesDiv.appendChild(detalhesDiv);
         consultasPorMes.appendChild(mesDiv);
     }
 }
 
 function excluirConsulta(nomePaciente) {
     consultas = consultas.filter(consulta => consulta.nomePaciente !== nomePaciente);
-    localStorage.setItem('consultas', JSON.stringify(consultas)); 
+    localStorage.setItem('consultas', JSON.stringify(consultas));
     atualizarConsultas();
 }
 
@@ -121,15 +114,6 @@ function alterarConsulta(nomePaciente) {
     }
 }
 
-function toggleDetails(mesAno) {
-    const detalhesDiv = document.getElementById(mesAno);
-    if (detalhesDiv.style.display === "none" || !detalhesDiv.style.display) {
-        detalhesDiv.style.display = "block";
-    } else {
-        detalhesDiv.style.display = "none";
-    }
-}
-
 function filtrarConsultas() {
     const especialidade = document.getElementById("filtroEspecialidade").value.toLowerCase();
     const data = document.getElementById("filtroData").value;
@@ -139,19 +123,18 @@ function filtrarConsultas() {
                (!data || consulta.dataConsulta === data);
     });
 
-    const consultasHoje = document.getElementById("consultasHoje");
-    consultasHoje.innerHTML = '';
+    const filtroResultados = document.getElementById("filtroResultados");
+    filtroResultados.innerHTML = '';
 
     consultasFiltradas.forEach(consulta => {
         const consultaDiv = document.createElement("div");
+        consultaDiv.className = "consulta";
         consultaDiv.innerHTML = `
-            <div class="consulta">
-                <strong>${consulta.nomePaciente}</strong><br>
-                Responsável: ${consulta.responsavel}<br>
-                Especialista: ${consulta.especialista}<br>
-                Horário: ${consulta.horarioConsulta}<br>
-            </div>
+            <strong>${consulta.nomePaciente}</strong><br>
+            Responsável: ${consulta.responsavel}<br>
+            Especialista: ${consulta.especialista}<br>
+            Horário: ${consulta.horarioConsulta}<br>
         `;
-        consultasHoje.appendChild(consultaDiv);
+        filtroResultados.appendChild(consultaDiv);
     });
 }
