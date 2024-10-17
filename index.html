@@ -11,7 +11,24 @@
     <header>
         <h1>FonoClinic - Gerenciamento de Consultas</h1>
     </header>
+
     <main>
+        <!-- Sessão de Filtro de Consultas -->
+        <section class="filter-section">
+            <h2>Filtro de Consultas</h2>
+            <div class="filter-fields">
+                <label for="filtroEspecialidade">Especialidade:</label>
+                <input type="text" id="filtroEspecialidade">
+
+                <label for="filtroData">Data:</label>
+                <input type="date" id="filtroData">
+
+                <button class="btn-filtrar" onclick="filtrarConsultas()">Confirmar</button>
+            </div>
+            <div id="filtroResultados" class="consultas-list"></div>
+        </section>
+
+        <!-- Formulário de Cadastro de Consultas -->
         <section class="form-section">
             <h2>Cadastro de Consultas</h2>
             <form id="consultaForm">
@@ -46,23 +63,13 @@
             </form>
         </section>
 
+        <!-- Consultas do Dia e por Mês -->
         <section class="display-section">
             <h2>Consultas do Dia</h2>
             <div id="consultasHoje" class="consultas-list"></div>
 
             <h2>Consultas por Mês</h2>
             <div id="consultasPorMes" class="consultas-list"></div>
-        </section>
-
-        <section class="filter-section">
-            <h2>Filtro de Consultas</h2>
-            <label for="filtroEspecialidade">Especialidade:</label>
-            <input type="text" id="filtroEspecialidade">
-
-            <label for="filtroData">Data:</label>
-            <input type="date" id="filtroData">
-
-            <button onclick="filtrarConsultas()">Filtrar</button>
         </section>
     </main>
 
