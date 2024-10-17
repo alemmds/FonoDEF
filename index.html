@@ -12,49 +12,49 @@
         <h1>FonoClinic - Gerenciamento de Consultas</h1>
     </header>
     <main>
-        <form id="consultaForm">
+        <section class="form-section">
             <h2>Cadastro de Consultas</h2>
-            <label for="nomePaciente">Nome do Paciente:</label>
-            <input type="text" id="nomePaciente" required>
+            <form id="consultaForm">
+                <label for="nomePaciente">Nome do Paciente:</label>
+                <input type="text" id="nomePaciente" required>
 
-            <label for="responsavel">Responsável:</label>
-            <input type="text" id="responsavel" required>
+                <label for="responsavel">Responsável:</label>
+                <input type="text" id="responsavel" required>
 
-            <label for="idade">Idade:</label>
-            <input type="number" id="idade" required>
+                <label for="idade">Idade:</label>
+                <input type="number" id="idade" required>
 
-            <label for="telefone">Telefone:</label>
-            <input type="tel" id="telefone" required>
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" required>
 
-            <label for="especialista">Especialista:</label>
-            <input type="text" id="especialista" required>
+                <label for="especialista">Especialista:</label>
+                <input type="text" id="especialista" required>
 
-            <label for="consultorio">Consultório:</label>
-            <input type="text" id="consultorio" required>
+                <label for="consultorio">Consultório:</label>
+                <input type="text" id="consultorio" required>
 
-            <label for="dataConsulta">Data da Consulta:</label>
-            <input type="date" id="dataConsulta" required>
+                <label for="dataConsulta">Data da Consulta:</label>
+                <input type="date" id="dataConsulta" required>
 
-            <label for="horarioConsulta">Horário da Consulta:</label>
-            <input type="time" id="horarioConsulta" required>
+                <label for="horarioConsulta">Horário da Consulta:</label>
+                <input type="time" id="horarioConsulta" required>
 
-            <label for="recomendacoes">Recomendações:</label>
-            <textarea id="recomendacoes" rows="4"></textarea>
+                <label for="recomendacoes">Recomendações:</label>
+                <textarea id="recomendacoes" rows="4"></textarea>
 
-            <button type="submit">Salvar Consulta</button>
-        </form>
+                <button type="submit">Salvar Consulta</button>
+            </form>
+        </section>
 
-        <div>
+        <section class="display-section">
             <h2>Consultas do Dia</h2>
-            <div id="consultasHoje"></div>
-        </div>
+            <div id="consultasHoje" class="consultas-list"></div>
 
-        <div>
             <h2>Consultas por Mês</h2>
-            <div id="consultasPorMes"></div>
-        </div>
+            <div id="consultasPorMes" class="consultas-list"></div>
+        </section>
 
-        <div>
+        <section class="filter-section">
             <h2>Filtro de Consultas</h2>
             <label for="filtroEspecialidade">Especialidade:</label>
             <input type="text" id="filtroEspecialidade">
@@ -63,8 +63,9 @@
             <input type="date" id="filtroData">
 
             <button onclick="filtrarConsultas()">Filtrar</button>
-        </div>
+        </section>
     </main>
+
     <script src="script.js"></script>
 </body>
 </html>
