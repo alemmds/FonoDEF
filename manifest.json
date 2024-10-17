@@ -1,7 +1,7 @@
 {
     "name": "FonoClinic",
     "short_name": "FonoClinic",
-    "start_url": "./index.html",
+    "start_url": "index.html",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#4285F4",
@@ -17,8 +17,5 @@
             "sizes": "512x512",
             "type": "image/png"
         }
-    ],
-    "orientation": "portrait-primary",
-    "scope": "./",
-    "lang": "pt-BR"
+    ]
 }
