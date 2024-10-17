@@ -1,63 +1,65 @@
+/* Estilo básico para a página */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-
-.app-container {
-    width: 80%;
-    margin: auto;
-    background: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    margin: 20px;
 }
 
 h1, h2 {
     color: #333;
 }
 
-.input-section {
-    margin: 20px 0;
-}
-
-input[type="text"],
-input[type="date"],
-input[type="time"],
-input[type="tel"],
-input[type="number"] {
-    width: calc(100% - 22px);
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
-    padding: 10px 15px;
-    border: none;
-    background-color: #28a745;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-.filter-section {
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
     margin-bottom: 20px;
 }
 
-.consultas-mes,
-.consultas-diarias {
-    margin-top: 20px;
+label {
+    margin-top: 10px;
 }
 
-.consultas-mes h2,
-.consultas-diarias h2 {
-    margin-top: 20px;
+input {
+    padding: 8px;
+    margin-top: 5px;
+}
+
+button {
+    padding: 10px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+#salvarConsulta {
+    background-color: green;
+    color: white;
+    border: none;
+}
+
+/* Botões de Editar e Excluir */
+.edit-btn {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#consultasDoMes, #resultadoFiltro, #consultasDiarias {
+    margin-top: 30px;
+}
+
+button.minimizar-maximizar {
+    background-color: #ddd;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
 }
