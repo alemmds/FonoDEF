@@ -22,6 +22,7 @@ document.getElementById('salvarConsulta').addEventListener('click', function () 
     localStorage.setItem('consultas', JSON.stringify(consultas));
     alert('Consulta salva com sucesso!');
     displayConsultas();
+    displayConsultasPorMes();
 });
 
 // Função para filtrar consultas
@@ -71,4 +72,24 @@ function displayConsultas() {
     });
 }
 
+// Função para exibir as consultas agendadas por mês
+function displayConsultasPorMes() {
+    const consultasPorMesDiv = document.getElementById('consultasPorMes');
+    consultasPorMesDiv.innerHTML = '';
+
+    const mesAtual = new Date().getMonth();
+    consultas.forEach(consulta => {
+        const dataConsulta = new Date(consulta.data);
+        if (dataConsulta.getMonth() === mesAtual) {
+            consultasPorMesDiv.innerHTML += `
+                <div class="consulta-mes">
+                    <p>Data: ${consulta.data} - Horário: ${consulta.horario}</p>
+                    <p>Paciente: ${consulta.nome} - Especialidade: ${consulta.especialidade}</p>
+                </div>
+            `;
+        }
+    });
+}
+
 displayConsultas();
+displayConsultasPorMes();
