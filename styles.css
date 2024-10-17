@@ -1,115 +1,211 @@
-/* Estilos Gerais */
+/* Estilos Globais */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
     margin: 0;
-    padding: 20px;
-}
-
-header {
-    background-color: #5cb85c;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
+    padding: 0;
+    background-color: #f5f5f5;
 }
 
 h1 {
-    margin: 0;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 20px;
 }
 
 h2 {
-    color: #333;
-    margin-bottom: 10px;
+    color: #34495e;
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px 0;
-}
-
-/* Formulário e Sessões */
-.form-section, .display-section, .filter-section {
-    width: 100%;
-    max-width: 600px;
-    background-color: white;
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
     padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
 }
 
 label {
-    display: block;
-    margin: 10px 0 5px;
     font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
 }
 
-input, textarea, button {
+input[type="text"],
+input[type="number"],
+input[type="tel"],
+input[type="date"],
+input[type="time"],
+textarea,
+select {
     width: 100%;
     padding: 10px;
-    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button.btn:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Seção de Filtro */
+#filtro-consultas {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #e3f2fd;
+    border: 1px solid #90caf9;
+    border-radius: 5px;
+}
+
+#filtroResultados {
+    margin-top: 15px;
+    background-color: #f5f5f5;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-textarea {
-    resize: none;
+/* Seção de Cadastro de Consultas */
+#cadastro-consultas {
+    margin-bottom: 30px;
 }
 
-button {
-    background-color: #5cb85c;
-    color: white;
-    cursor: pointer;
-    border: none;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #4cae4c;
-}
-
-/* Filtros */
-.filter-section {
-    background-color: #eef8f0;
-}
-
-.filter-fields {
-    display: flex;
-    flex-direction: column;
-}
-
-button.btn-filtrar {
-    background-color: #337ab7;
-    margin-top: 15px;
-}
-
-button.btn-filtrar:hover {
-    background-color: #286090;
-}
-
-.consultas-list {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+button#salvarConsulta {
     margin-top: 10px;
+    background-color: #28a745;
+    color: white;
 }
 
-.consulta {
-    background-color: #f9f9f9;
-    padding: 10px;
+button#salvarConsulta:hover {
+    background-color: #218838;
+}
+
+/* Seção Consultas por Mês */
+#consultas-mes {
+    margin-top: 30px;
+}
+
+#consultasPorMes h3 {
+    font-size: 18px;
+    color: #007bff;
     margin-bottom: 10px;
+}
+
+/* Botões dos dias */
+.button-dia {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 5px 5px 10px 0;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button-dia:hover {
+    background-color: #138496;
+}
+
+/* Estilos para exibir as consultas */
+#resultadoConsulta {
+    margin-top: 20px;
+}
+
+#resultadoConsulta .consulta {
+    padding: 15px;
+    background-color: #f8f9fa;
     border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#resultadoConsulta .consulta strong {
+    font-size: 18px;
+    color: #333;
+}
+
+#resultadoConsulta .consulta button.edit-btn,
+#resultadoConsulta .consulta button.delete-btn {
+    margin-top: 10px;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
     border-radius: 5px;
 }
 
-/* Estilos para Botões de Excluir e Alterar */
-button.excluir, button.alterar {
-    background-color: #d9534f;
-    margin-right: 5px;
+button.edit-btn {
+    background-color: #007bff;
+    color: white;
 }
 
-button.alterar {
-    background-color: #f0ad4e;
+button.edit-btn:hover {
+    background-color: #0056b3;
+}
+
+button.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+button.delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="time"],
+    textarea,
+    select {
+        font-size: 14px;
+    }
+
+    button.btn, .button-dia {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
 }
