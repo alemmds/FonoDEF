@@ -56,8 +56,22 @@ button:hover {
 
 .button-group {
     text-align: center;
+    margin-top: 20px;
 }
 
 #resultadoFiltro {
     margin-top: 20px;
+}
+
+.consulta-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.minimizar-maximizar {
+    display: none;
+}
+
+.visible {
+    display: block;
 }
