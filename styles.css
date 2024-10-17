@@ -1,143 +1,53 @@
-/* Reset básico */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
 }
 
-/* Cabeçalho */
 header {
-    background-color: #007BFF;
+    background-color: #4CAF50;
     color: white;
-    padding: 20px;
     text-align: center;
-    font-size: 24px;
-    font-weight: bold;
+    padding: 10px 0;
 }
 
-/* Container principal */
-.container {
-    padding: 20px;
+h1 {
+    margin: 0;
 }
 
-/* Estilização do formulário */
-form {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+section {
+    margin: 20px;
 }
 
-/* Estilo dos inputs e selects do formulário */
-form input, form select {
-    padding: 10px;
-    margin: 5px 0;
-    width: calc(100% - 22px); /* Largura responsiva */
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+label {
+    display: inline-block;
+    width: 150px;
 }
 
-/* Estilização dos botões no formulário */
-form button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-top: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-form button:hover {
-    background-color: #218838;
-}
-
-/* Consultas de hoje e agendadas */
-#consultasHoje, #consultasPorMes {
-    background: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Estilo dos botões de dias */
-.button-dia {
-    padding: 10px;
-    font-size: 18px;
-    margin: 5px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.button-dia:hover {
-    background-color: #0056b3;
-}
-
-/* Consulta estilizada */
-.consulta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
+input, select {
     margin-bottom: 10px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
-    border-radius: 5px;
 }
 
-/* Estilizar as informações do paciente */
-.info-paciente {
-    flex-grow: 1;
-}
-
-/* Botões de alterar e excluir */
-.consulta button {
-    background-color: #dc3545;
-    color: white;
-    border: none;
+button {
+    margin-left: 10px;
     padding: 5px 10px;
-    margin-left: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
 }
 
-.consulta button:hover {
-    background-color: #c82333;
+button:hover {
+    background-color: #45a049;
 }
 
-/* Alterar botão para verde */
-.consulta button.alterar {
-    background-color: #28a745;
-}
-
-.consulta button.alterar:hover {
-    background-color: #218838;
-}
-
-/* Mês */
-.month {
+#filterResult {
+    margin-top: 10px;
     font-weight: bold;
-    font-size: 20px;
-    margin-bottom: 10px;
 }
 
-/* Detalhes escondidos por padrão */
-.details {
-    display: none;
-    margin-left: 20px;
-}
-
-/* Mostrar detalhes */
-.details.show {
-    display: block;
+.consulta {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px 0;
 }
