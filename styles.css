@@ -1,70 +1,89 @@
-* {
-    box-sizing: border-box;
-}
-
+/* Estilo para todo o documento */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f4f4f9;
+    color: #333;
 }
 
-h1, h2 {
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem;
     text-align: center;
-    margin-bottom: 20px;
 }
 
-section {
-    width: 90%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+.form-section {
+    margin: 1rem 2rem;
+}
+
+h2 {
+    color: #4CAF50;
+    margin-bottom: 0.5rem;
+}
+
+.form-layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
 }
 
 label {
-    display: block;
-    margin-bottom: 5px;
     font-weight: bold;
+    margin-bottom: 0.2rem;
 }
 
-input[type="text"], input[type="date"], input[type="time"], input[type="number"], textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
+input, textarea {
+    padding: 0.5rem;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px;
 }
 
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
+textarea {
+    resize: none;
+}
+
+.btn {
+    grid-column: span 2;
+    background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 5px;
+    padding: 0.8rem;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
 }
 
-button:hover {
-    background-color: #0056b3;
+.btn:hover {
+    background-color: #45a049;
 }
 
-#consultas-mensais-lista button, #consultas-diarias-lista button {
-    display: inline-block;
-    margin: 5px;
-    padding: 15px 20px;
-    font-size: 18px;
-    border-radius: 5px;
-    background-color: #28a745;
-    color: white;
-    border: none;
+#consultas-diarias-lista, #consultas-mensais-lista {
+    margin-top: 1rem;
+}
+
+#consultas-diarias-lista button, #consultas-mensais-lista button {
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 0.9rem;
 }
 
-#consultas-mensais-lista button:hover, #consultas-diarias-lista button:hover {
-    background-color: #218838;
+#consultas-diarias-lista button:hover, #consultas-mensais-lista button:hover {
+    background-color: #ddd;
 }
