@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f8f9fa;
     color: #333;
     padding: 20px;
 }
@@ -37,7 +37,7 @@ form label {
 }
 
 input, select, textarea {
-    width: 100%;
+    width: calc(100% - 16px);
     padding: 8px;
     margin-top: 5px;
     border: 1px solid #ccc;
@@ -49,6 +49,23 @@ input, select, textarea {
 textarea {
     height: 100px;
     resize: vertical;
+}
+
+/* Layout flexível para os campos de cadastro */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.form-row > div {
+    flex: 1;
+    min-width: 200px;
+    margin-right: 10px;
+}
+
+.form-row > div:last-child {
+    margin-right: 0;
 }
 
 /* Botões */
@@ -87,15 +104,26 @@ button:hover {
     background-color: #87CEEB;
 }
 
-/* Tamanho maior dos botões para meses e dias */
+/* Layout flexível para consultas por mês */
+#consultas-mes-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 #consultas-mes-content button {
-    font-size: 1.5em;
-    padding: 15px;
+    margin: 10px;
+    flex: 1 1 30%; /* Botões ficam maiores */
+}
+
+#consultas-dia-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 #consultas-dia-content button {
-    font-size: 1.3em;
-    padding: 12px;
+    margin: 10px;
+    flex: 1 1 30%; /* Botões ficam maiores */
 }
 
 /* Alinhamento e layout do filtro */
@@ -123,36 +151,4 @@ button:hover {
 #consultas-diarias, 
 #consultas-mensais {
     margin-top: 20px;
-}
-
-/* Consultas listadas */
-#consultas-dia-content {
-    margin-top: 15px;
-}
-
-#consultas-dia-content div {
-    background-color: #f9f9f9;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-#consultas-dia-content div p {
-    margin: 5px 0;
-}
-
-#consultas-dia-content button {
-    background-color: #FFA07A;
-    border: none;
-    padding: 8px 10px;
-    color: white;
-    font-size: 1em;
-    margin-top: 5px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-#consultas-dia-content button:hover {
-    background-color: #FF4500;
 }
