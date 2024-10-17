@@ -10,7 +10,6 @@ document.getElementById('consultaForm').addEventListener('submit', function(even
     const dataConsulta = document.getElementById('dataConsulta').value;
     const horarioConsulta = document.getElementById('horarioConsulta').value;
 
-    // Aqui você pode salvar os dados localmente ou em um banco de dados
     const consulta = {
         nomePaciente,
         responsavel,
@@ -37,11 +36,11 @@ function exibirConsultasDia() {
     const consultasDia = consultas.filter(consulta => consulta.dataConsulta === new Date().toISOString().split('T')[0]);
     
     const consultasDiaDiv = document.getElementById('consultasDia');
-    consultasDiaDiv.innerHTML = '';
+    consultasDiaDiv.innerHTML = consultasDia.length ? '<h2>Consultas de Hoje</h2>' : '';
 
     consultasDia.forEach(consulta => {
         consultasDiaDiv.innerHTML += `
-            <p>${consulta.nomePaciente} - ${consulta.especialidade} às ${consulta.horarioConsulta}</p>
+            <p><strong>${consulta.nomePaciente}</strong> - ${consulta.especialidade} às ${consulta.horarioConsulta}</p>
         `;
     });
 }
@@ -54,11 +53,11 @@ function exibirConsultasMes() {
     const consultasMes = consultas.filter(consulta => new Date(consulta.dataConsulta).getMonth() === new Date().getMonth());
     
     const consultasMesDiv = document.getElementById('consultasMes');
-    consultasMesDiv.innerHTML = '';
+    consultasMesDiv.innerHTML = consultasMes.length ? '<h2>Consultas deste Mês</h2>' : '';
 
     consultasMes.forEach(consulta => {
         consultasMesDiv.innerHTML += `
-            <p>${consulta.nomePaciente} - ${consulta.especialidade} em ${consulta.dataConsulta}</p>
+            <p><strong>${consulta.nomePaciente}</strong> - ${consulta.especialidade} em ${consulta.dataConsulta}</p>
         `;
     });
 }
