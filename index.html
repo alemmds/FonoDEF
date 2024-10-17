@@ -1,102 +1,76 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#007bff">
-    <link rel="stylesheet" href="styles.css"> <!-- Referência ao CSS -->
-    <link rel="manifest" href="manifest.json"> <!-- Referência ao manifest -->
-    <title>FonoClinic - Gestão de Consultas</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>Web App de Consultas</title>
 </head>
 <body>
-    <div class="app-container">
-        <!-- Cabeçalho -->
-        <header class="app-header">
-            <h1>FonoClinic</h1>
-            <h2>Gestão de Consultas</h2>
-        </header>
-
-        <!-- Formulário de Cadastro de Consulta -->
-        <section id="form-cadastro">
-            <h3>Agendar Consulta</h3>
+    <header>
+        <h1>Gestão de Consultas</h1>
+    </header>
+    <main>
+        <section class="form-section">
+            <h2>Cadastro de Consulta</h2>
             <form id="cadastro-form">
                 <div class="input-group">
                     <label for="nome">Nome do Paciente:</label>
-                    <input type="text" id="nome" name="nome" required>
+                    <input type="text" id="nome" placeholder="Digite o nome">
                 </div>
-
                 <div class="input-group">
                     <label for="telefone">Telefone:</label>
-                    <input type="tel" id="telefone" name="telefone" required>
+                    <input type="text" id="telefone" placeholder="Digite o telefone">
                 </div>
-
                 <div class="input-group">
                     <label for="idade">Idade:</label>
-                    <input type="number" id="idade" name="idade" required>
+                    <input type="number" id="idade" placeholder="Digite a idade">
                 </div>
-
                 <div class="input-group">
                     <label for="consultorio">Consultório:</label>
-                    <input type="number" id="consultorio" name="consultorio" required>
+                    <input type="text" id="consultorio" placeholder="Digite o número do consultório">
                 </div>
-
                 <div class="input-group">
                     <label for="especialidade">Especialidade:</label>
-                    <select id="especialidade" name="especialidade" required>
-                        <option value="Fonoaudiologia">Fonoaudiologia</option>
-                        <option value="Psicologia">Psicologia</option>
-                    </select>
+                    <input type="text" id="especialidade" placeholder="Digite a especialidade">
                 </div>
-
                 <div class="input-group">
                     <label for="data-consulta">Data da Consulta:</label>
-                    <input type="date" id="data-consulta" name="data-consulta" required>
+                    <input type="date" id="data-consulta">
                 </div>
-
                 <div class="input-group">
                     <label for="hora-consulta">Hora da Consulta:</label>
-                    <input type="time" id="hora-consulta" name="hora-consulta" required>
+                    <input type="time" id="hora-consulta">
                 </div>
-
-                <button type="button" class="app-button" id="salvar-consulta">Salvar Consulta</button>
+                <button type="button" id="salvar-consulta">Salvar Consulta</button>
             </form>
         </section>
 
-        <!-- Seção de Consultas do Mês -->
-        <section id="consultas-mes">
-            <h3>Consultas por Mês</h3>
-            <div id="meses-consultas"></div> <!-- Botões dinâmicos dos meses -->
-            <div id="dias-consultas"></div>  <!-- Botões dinâmicos dos dias -->
+        <section class="filter-section">
+            <h2>Resumo de Filtro</h2>
+            <div class="input-group">
+                <label for="filtro-especialidade">Especialidade:</label>
+                <input type="text" id="filtro-especialidade" placeholder="Digite a especialidade">
+            </div>
+            <div class="input-group">
+                <label for="filtro-data">Data:</label>
+                <input type="date" id="filtro-data">
+            </div>
+            <div class="input-group">
+                <label for="filtro-horario">Horário:</label>
+                <input type="time" id="filtro-horario">
+            </div>
+            <button type="button" id="filtro-confirmar">Confirmar Filtro</button>
+            <div id="resultado-filtro-detalhes"></div>
         </section>
 
-        <!-- Seção de Filtro de Consultas -->
-        <section id="resultado-filtro">
-            <h3>Filtrar Consultas</h3>
-            <form id="filtro-form">
-                <div class="input-group">
-                    <label for="filtro-especialidade">Especialidade:</label>
-                    <select id="filtro-especialidade" name="filtro-especialidade">
-                        <option value="Fonoaudiologia">Fonoaudiologia</option>
-                        <option value="Psicologia">Psicologia</option>
-                    </select>
-                </div>
-
-                <div class="input-group">
-                    <label for="filtro-data">Data:</label>
-                    <input type="date" id="filtro-data" name="filtro-data">
-                </div>
-
-                <div class="input-group">
-                    <label for="filtro-horario">Horário:</label>
-                    <input type="time" id="filtro-horario" name="filtro-horario">
-                </div>
-
-                <button type="button" class="app-button" id="filtro-confirmar">Confirmar</button>
-            </form>
-            <div id="resultado-filtro-detalhes"></div> <!-- Resultados dos filtros -->
+        <section class="consulta-mes-section">
+            <h2>Consultas por Mês</h2>
+            <div id="meses-consultas" class="meses-grid"></div>
+            <div id="dias-consultas" class="dias-grid"></div>
         </section>
-    </div>
-
-    <script src="script.js"></script> <!-- Referência ao script -->
+    </main>
+    
+    <script src="script.js"></script>
 </body>
 </html>
