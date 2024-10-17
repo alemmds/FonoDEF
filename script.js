@@ -1,86 +1,57 @@
-document.addEventListener('DOMContentLoaded', function () {
-    let consultas = [];
-    const salvarConsultaBtn = document.getElementById('salvarConsulta');
-    const consultasHojeDiv = document.getElementById('consultasHoje');
-    const consultasPorMesDiv = document.getElementById('consultasPorMes');
+document.getElementById('confirmarFiltro').addEventListener('click', function () {
+    const especialidade = document.getElementById('especialidade').value;
+    const dataConsulta = document.getElementById('dataConsulta').value;
+    const horarioConsulta = document.getElementById('horarioConsulta').value;
 
-    // Função para salvar a consulta
-    salvarConsultaBtn.addEventListener('click', function () {
-        const consulta = {
-            nome: document.getElementById('nome').value,
-            responsavel: document.getElementById('responsavel').value,
-            idade: document.getElementById('idade').value,
-            telefone: document.getElementById('telefone').value,
-            especialidade: document.getElementById('especialidade').value,
-            consultorio: document.getElementById('consultorio').value,
-            dataConsulta: document.getElementById('dataConsulta').value,
-            horarioConsulta: document.getElementById('horarioConsulta').value,
-            recomendacoes: document.getElementById('recomendacoes').value
-        };
+    // Aqui você deve implementar a lógica para verificar a disponibilidade
+    // Simulação de verificação
+    const disponibilidade = Math.random() < 0.5; // 50% de chance de estar ocupado
 
-        consultas.push(consulta);
-        exibirConsultasHoje();
-        exibirConsultasPorMes();
-    });
-
-    // Função para exibir as consultas de hoje
-    function exibirConsultasHoje() {
-        consultasHojeDiv.innerHTML = '';
-        consultas.forEach((consulta, index) => {
-            const consultaDiv = document.createElement('div');
-            consultaDiv.classList.add('consulta');
-            consultaDiv.innerHTML = `
-                <p>Nome: ${consulta.nome}</p>
-                <p>Responsável: ${consulta.responsavel}</p>
-                <p>Idade: ${consulta.idade}</p>
-                <p>Telefone: ${consulta.telefone}</p>
-                <p>Especialidade: ${consulta.especialidade}</p>
-                <p>Consultório: ${consulta.consultorio}</p>
-                <p>Data da Consulta: ${consulta.dataConsulta}</p>
-                <p>Horário: ${consulta.horarioConsulta}</p>
-                <p>Recomendações: ${consulta.recomendacoes}</p>
-                <button class="alterar" onclick="alterarConsulta(${index})">Alterar</button>
-                <button class="excluir" onclick="excluirConsulta(${index})">Excluir</button>
-            `;
-            consultasHojeDiv.appendChild(consultaDiv);
-        });
+    const disponibilidadeDiv = document.getElementById('disponibilidade');
+    if (disponibilidade) {
+        disponibilidadeDiv.innerText = 'Horário ocupado.';
+    } else {
+        disponibilidadeDiv.innerText = 'Horário disponível.';
     }
+});
 
-    // Função para exibir consultas por mês
-    function exibirConsultasPorMes() {
-        consultasPorMesDiv.innerHTML = '';
-        consultas.forEach(consulta => {
-            const consultaMesDiv = document.createElement('div');
-            consultaMesDiv.classList.add('consulta-mes');
-            consultaMesDiv.innerHTML = `
-                <p>Nome: ${consulta.nome}</p>
-                <p>Data: ${consulta.dataConsulta}</p>
-            `;
-            consultasPorMesDiv.appendChild(consultaMesDiv);
-        });
-    }
+// Lógica para salvar consultas e listar as consultas de hoje
+document.getElementById('salvarConsulta').addEventListener('click', function () {
+    const nomePaciente = document.getElementById('nomePaciente').value;
+    const responsavel = document.getElementById('responsavel').value;
+    const idade = document.getElementById('idade').value;
+    const telefone = document.getElementById('telefone').value;
+    const especialidade = document.getElementById('especialidadeCadastro').value;
+    const consultorio = document.getElementById('consultorio').value;
+    const dataConsulta = document.getElementById('dataConsultaCadastro').value;
+    const horarioConsulta = document.getElementById('horarioConsultaCadastro').value;
+    const recomendacoes = document.getElementById('recomendacoes').value;
 
-    // Função para excluir consulta
-    window.excluirConsulta = function (index) {
-        consultas.splice(index, 1);
-        exibirConsultasHoje();
-        exibirConsultasPorMes();
-    };
+    const consultasHoje = document.getElementById('consultasHoje');
+    const consultaDiv = document.createElement('div');
+    consultaDiv.innerHTML = `
+        <strong>${nomePaciente}</strong><br>
+        Responsável: ${responsavel}<br>
+        Idade: ${idade}<br>
+        Telefone: ${telefone}<br>
+        Especialidade: ${especialidade}<br>
+        Consultório: ${consultorio}<br>
+        Data da Consulta: ${dataConsulta}<br>
+        Horário: ${horarioConsulta}<br>
+        Recomendações: ${recomendacoes}<br>
+        <button>Excluir</button>
+        <button>Alterar</button>
+    `;
+    consultasHoje.appendChild(consultaDiv);
 
-    // Função para alterar consulta
-    window.alterarConsulta = function (index) {
-        const consulta = consultas[index];
-        document.getElementById('nome').value = consulta.nome;
-        document.getElementById('responsavel').value = consulta.responsavel;
-        document.getElementById('idade').value = consulta.idade;
-        document.getElementById('telefone').value = consulta.telefone;
-        document.getElementById('especialidade').value = consulta.especialidade;
-        document.getElementById('consultorio').value = consulta.consultorio;
-        document.getElementById('dataConsulta').value = consulta.dataConsulta;
-        document.getElementById('horarioConsulta').value = consulta.horarioConsulta;
-        document.getElementById('recomendacoes').value = consulta.recomendacoes;
-
-        // Remove a consulta antiga para poder salvar a nova alteração
-        consultas.splice(index, 1);
-    };
+    // Limpar os campos após o salvamento
+    document.getElementById('nomePaciente').value = '';
+    document.getElementById('responsavel').value = '';
+    document.getElementById('idade').value = '';
+    document.getElementById('telefone').value = '';
+    document.getElementById('especialidadeCadastro').value = '';
+    document.getElementById('consultorio').value = 'Consultório 1';
+    document.getElementById('dataConsultaCadastro').value = '';
+    document.getElementById('horarioConsultaCadastro').value = '';
+    document.getElementById('recomendacoes').value = '';
 });
