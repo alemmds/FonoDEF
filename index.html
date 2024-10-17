@@ -8,44 +8,48 @@
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
-    <h1>FonoClinic - Gerenciamento de Consultas</h1>
-    
-    <form id="consultaForm">
-        <label for="nomePaciente">Nome do Paciente</label>
-        <input type="text" id="nomePaciente" name="nomePaciente" placeholder="Nome do Paciente" required>
-        
-        <label for="responsavel">Responsável</label>
-        <input type="text" id="responsavel" name="responsavel" placeholder="Responsável" required>
-        
-        <label for="idade">Idade</label>
-        <input type="number" id="idade" name="idade" placeholder="Idade" required>
-        
-        <label for="telefone">Número de Telefone</label>
-        <input type="tel" id="telefone" name="telefone" placeholder="Número de Telefone" required>
+    <div class="container">
+        <header>
+            <h1>FonoClinic - Gerenciamento de Consultas</h1>
+        </header>
 
-        <label for="especialidade">Especialidade</label>
-        <input type="text" id="especialidade" name="especialidade" placeholder="Especialidade do Atendimento" required>
-        
-        <label for="consultorio">Consultório</label>
-        <input type="text" id="consultorio" name="consultorio" placeholder="Consultório" required>
-        
-        <label for="dataConsulta">Data da Consulta</label>
-        <input type="date" id="dataConsulta" name="dataConsulta" required>
-        
-        <label for="horarioConsulta">Horário da Consulta</label>
-        <input type="time" id="horarioConsulta" name="horarioConsulta" required>
-        
-        <button type="submit" id="salvarConsultaBtn">Salvar Consulta</button>
-    </form>
+        <form id="consultaForm" class="formulario">
+            <h2>Cadastro de Paciente</h2>
+            <label for="nomePaciente">Nome do Paciente</label>
+            <input type="text" id="nomePaciente" name="nomePaciente" placeholder="Digite o nome do paciente" required>
 
-    <button id="btnHoje">Hoje</button>
-    <button id="btnConsultasMes">Consultas por Mês</button>
+            <label for="responsavel">Responsável</label>
+            <input type="text" id="responsavel" name="responsavel" placeholder="Digite o nome do responsável" required>
 
-    <h2>Classificação de Consultas</h2>
-    <div id="consultasDia"></div>
+            <label for="idade">Idade</label>
+            <input type="number" id="idade" name="idade" placeholder="Digite a idade do paciente" required>
 
-    <h2>Consultas do Mês</h2>
-    <div id="consultasMes"></div>
+            <label for="telefone">Número de Telefone</label>
+            <input type="tel" id="telefone" name="telefone" placeholder="Digite o número de telefone" required>
+
+            <label for="especialidade">Especialidade</label>
+            <input type="text" id="especialidade" name="especialidade" placeholder="Digite a especialidade" required>
+
+            <label for="consultorio">Consultório</label>
+            <input type="text" id="consultorio" name="consultorio" placeholder="Digite o consultório" required>
+
+            <label for="dataConsulta">Data da Consulta</label>
+            <input type="date" id="dataConsulta" name="dataConsulta" required>
+
+            <label for="horarioConsulta">Horário da Consulta</label>
+            <input type="time" id="horarioConsulta" name="horarioConsulta" required>
+
+            <button type="submit" class="btn-principal">Salvar Consulta</button>
+        </form>
+
+        <div class="botoes-secundarios">
+            <button id="btnHoje" class="btn-secundario">Consultas de Hoje</button>
+            <button id="btnConsultasMes" class="btn-secundario">Consultas por Mês</button>
+        </div>
+
+        <section id="consultasDia" class="resultado-consultas"></section>
+        <section id="consultasMes" class="resultado-consultas"></section>
+    </div>
 
     <script src="script.js"></script>
 </body>
