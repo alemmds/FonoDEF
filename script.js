@@ -1,68 +1,119 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const salvarConsultaBtn = document.getElementById("salvar-consulta-btn");
-    const confirmarBtn = document.getElementById("confirmar-btn");
+// Array para armazenar as consultas
+let consultas = [];
 
-    let consultas = [];
+// Função para exibir as consultas do dia
+function exibirConsultasDoDia() {
+    const consultasDiariasLista = document.getElementById("consultas-diarias-lista");
+    consultasDiariasLista.innerHTML = "";
 
-    // Função para salvar consulta
-    salvarConsultaBtn.addEventListener("click", function () {
-        const nomePaciente = document.getElementById("nome-paciente").value;
-        const responsavel = document.getElementById("responsavel").value;
-        const idade = document.getElementById("idade").value;
-        const telefone = document.getElementById("telefone").value;
-        const especialidade = document.getElementById("especialidade-cadastro").value;
-        const consultorio = document.getElementById("consultorio").value;
-        const dataConsulta = document.getElementById("data-consulta").value;
-        const horarioConsulta = document.getElementById("horario-consulta").value;
-        const recomendacoes = document.getElementById("recomendacoes").value;
+    const dataAtual = new Date().toISOString().split('T')[0]; // Obtendo a data atual
+    const consultasDoDia = consultas.filter(consulta => consulta.data === dataAtual);
 
-        const consulta = {
-            nomePaciente,
-            responsavel,
-            idade,
-            telefone,
-            especialidade,
-            consultorio,
-            dataConsulta,
-            horarioConsulta,
-            recomendacoes,
-        };
+    if (consultasDoDia.length > 0) {
+        consultasDoDia.forEach((consulta) => {
+            const div = document.createElement("div");
+            div.textContent = `${consulta.nome} - ${consulta.horario}`;
+            const editarBtn = document.createElement("button");
+            editarBtn.textContent = "Editar";
+            editarBtn.onclick = () => editarConsulta(consulta);
+            const excluirBtn = document.createElement("button");
+            excluirBtn.textContent = "Excluir";
+            excluirBtn.onclick = () => excluirConsulta(consulta);
 
-        consultas.push(consulta);
-        alert("Consulta salva com sucesso!");
-        exibirConsultasMensais();
+            div.appendChild(editarBtn);
+            div.appendChild(excluirBtn);
+            consultasDiariasLista.appendChild(div);
+        });
+    } else {
+        consultasDiariasLista.textContent = "Nenhuma consulta para hoje.";
+    }
+}
+
+// Função para exibir consultas por mês
+function exibirConsultasPorMes() {
+    const consultasMensaisLista = document.getElementById("consultas-mensais-lista");
+    consultasMensaisLista.innerHTML = "";
+
+    const consultasPorMes = {};
+
+    consultas.forEach((consulta) => {
+        const mesAno = consulta.data.substring(0, 7); // Formato "YYYY-MM"
+        if (!consultasPorMes[mesAno]) {
+            consultasPorMes[mesAno] = [];
+        }
+        consultasPorMes[mesAno].push(consulta);
     });
 
-    // Função para exibir consultas do mês
-    function exibirConsultasMensais() {
-        const consultasMes = consultas.filter(consulta => consulta.dataConsulta.includes("2024-10")); // Exemplo de mês/ano fixo
-        const consultasMensaisLista = document.getElementById("consultas-mensais-lista");
-        consultasMensaisLista.innerHTML = '';
-
-        consultasMes.forEach(consulta => {
+    for (const mes in consultasPorMes) {
+        const div = document.createElement("div");
+        div.textContent = `Mês: ${mes}`;
+        consultasPorMes[mes].forEach((consulta) => {
             const btn = document.createElement("button");
-            btn.innerText = consulta.dataConsulta.split("-")[2]; // Exibe o dia da consulta
-            consultasMensaisLista.appendChild(btn);
+            btn.textContent = `${consulta.data} - ${consulta.nome}`;
+            div.appendChild(btn);
         });
+        consultasMensaisLista.appendChild(div);
+    }
+}
+
+// Função para salvar uma nova consulta
+document.getElementById("salvar-consulta-btn").addEventListener("click", function () {
+    const nomePaciente = document.getElementById("nome-paciente").value;
+    const responsavel = document.getElementById("responsavel").value;
+    const idade = document.getElementById("idade").value;
+    const telefone = document.getElementById("telefone").value;
+    const especialidade = document.getElementById("especialidade-cadastro").value;
+    const consultorio = document.getElementById("consultorio").value;
+    const dataConsulta = document.getElementById("data-consulta").value;
+    const horarioConsulta = document.getElementById("horario-consulta").value;
+    const recomendacoes = document.getElementById("recomendacoes").value;
+
+    if (!nomePaciente || !responsavel || !especialidade || !dataConsulta || !horarioConsulta) {
+        alert("Por favor, preencha todos os campos obrigatórios.");
+        return;
     }
 
-    // Função de filtro de consultas
-    confirmarBtn.addEventListener("click", function () {
-        const especialidadeFiltro = document.getElementById("especialidade").value;
-        const dataFiltro = document.getElementById("data").value;
+    const novaConsulta = {
+        nome: nomePaciente,
+        responsavel: responsavel,
+        idade: idade,
+        telefone: telefone,
+        especialidade: especialidade,
+        consultorio: consultorio,
+        data: dataConsulta,
+        horario: horarioConsulta,
+        recomendacoes: recomendacoes
+    };
 
-        const consultasFiltradas = consultas.filter(consulta =>
-            consulta.especialidade.includes(especialidadeFiltro) &&
-            consulta.dataConsulta === dataFiltro
-        );
+    consultas.push(novaConsulta);
+    alert("Consulta salva com sucesso!");
+    
+    // Limpar os campos do formulário
+    document.getElementById("cadastro-form").reset();
+    
+    // Atualizar exibições
+    exibirConsultasDoDia();
+    exibirConsultasPorMes();
+});
 
-        const consultasDiariasLista = document.getElementById("consultas-diarias-lista");
-        consultasDiariasLista.innerHTML = '';
+// Função para editar consulta
+function editarConsulta(consulta) {
+    // Aqui você pode implementar a lógica para editar a consulta selecionada
+    alert(`Editar consulta: ${consulta.nome}`);
+}
 
-        consultasFiltradas.forEach(consulta => {
-            const consultaDiv = document.createElement("div");
-            consultaDiv.innerText = `Paciente: ${consulta.nomePaciente}, Hora: ${consulta.horarioConsulta}`;
-            consultasDiariasLista.appendChild(consultaDiv);
-        });
-    });
+// Função para excluir consulta
+function excluirConsulta(consulta) {
+    consultas = consultas.filter(c => c !== consulta);
+    alert(`Consulta de ${consulta.nome} excluída com sucesso!`);
+    
+    // Atualizar exibições
+    exibirConsultasDoDia();
+    exibirConsultasPorMes();
+}
+
+// Inicialização
+document.addEventListener("DOMContentLoaded", function () {
+    exibirConsultasDoDia();
+    exibirConsultasPorMes();
 });
