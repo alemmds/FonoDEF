@@ -1,3 +1,4 @@
+/* Estilos Gerais */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -28,6 +29,7 @@ main {
     margin: 20px 0;
 }
 
+/* Formulário e Sessões */
 .form-section, .display-section, .filter-section {
     width: 100%;
     max-width: 600px;
@@ -52,6 +54,10 @@ input, textarea, button {
     border-radius: 5px;
 }
 
+textarea {
+    resize: none;
+}
+
 button {
     background-color: #5cb85c;
     color: white;
@@ -62,6 +68,25 @@ button {
 
 button:hover {
     background-color: #4cae4c;
+}
+
+/* Filtros */
+.filter-section {
+    background-color: #eef8f0;
+}
+
+.filter-fields {
+    display: flex;
+    flex-direction: column;
+}
+
+button.btn-filtrar {
+    background-color: #337ab7;
+    margin-top: 15px;
+}
+
+button.btn-filtrar:hover {
+    background-color: #286090;
 }
 
 .consultas-list {
@@ -79,6 +104,7 @@ button:hover {
     border-radius: 5px;
 }
 
+/* Estilos para Botões de Excluir e Alterar */
 button.excluir, button.alterar {
     background-color: #d9534f;
     margin-right: 5px;
