@@ -1,40 +1,51 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("cadastroForm");
-    const resultadoFiltro = document.getElementById("resultadoFiltro");
-    const consultasMes = document.getElementById("consultasMes");
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
 
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const nome = document.getElementById("nome").value;
-        const responsavel = document.getElementById("responsavel").value;
-        const idade = document.getElementById("idade").value;
-        const consultorio = document.getElementById("consultorio").value;
-        const especialidade = document.getElementById("especialidadeCadastro").value;
-        const dataConsulta = document.getElementById("dataConsulta").value;
-        const horarioConsulta = document.getElementById("horarioConsulta").value;
+h1, h2 {
+    color: #333;
+}
 
-        // Adiciona a consulta ao localStorage
-        const consultas = JSON.parse(localStorage.getItem("consultas")) || [];
-        consultas.push({ nome, responsavel, idade, consultorio, especialidade, dataConsulta, horarioConsulta });
-        localStorage.setItem("consultas", JSON.stringify(consultas));
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
 
-        // Limpa o formulário
-        form.reset();
-        loadConsultas();
-    });
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
 
-    function loadConsultas() {
-        consultasMes.innerHTML = '';
-        const consultas = JSON.parse(localStorage.getItem("consultas")) || [];
-        
-        consultas.forEach(consulta => {
-            const dia = new Date(consulta.dataConsulta).getDate();
-            const mes = new Date(consulta.dataConsulta).toLocaleString('default', { month: 'long' });
-            const consultaDiv = document.createElement("div");
-            consultaDiv.innerHTML = `<strong>${mes} ${dia}</strong> - ${consulta.nome}`;
-            consultasMes.appendChild(consultaDiv);
-        });
-    }
+input[type="text"], input[type="number"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
 
-    loadConsultas();
-});
+button {
+    padding: 10px 15px;
+    background-color: #4285F4; /* Azul do Google */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #357ae8; /* Tom mais escuro ao passar o mouse */
+}
+
+#resultadoFiltro, #consultasMes {
+    margin-top: 20px;
+    background-color: #e8e8e8;
+    padding: 10px;
+    border-radius: 4px;
+}
