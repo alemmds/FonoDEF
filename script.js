@@ -1,115 +1,137 @@
-document.getElementById('consultaForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    const nome = document.getElementById('nome').value;
-    const responsavel = document.getElementById('responsavel').value;
-    const idade = document.getElementById('idade').value;
-    const telefone = document.getElementById('telefone').value;
-    const especialidade = document.getElementById('especialidade').value;
-    const data = document.getElementById('data').value;
-    const horario = document.getElementById('horario').value;
+const saveButton = document.getElementById("saveButton");
+const filterButton = document.getElementById("filterButton");
+const consultasDoMes = document.getElementById("consultasDoMes");
+const consultasDiarias = document.getElementById("consultasDiarias");
 
-    // Verifica se já existe consulta no mesmo horário para o paciente
-    const consultas = JSON.parse(localStorage.getItem('consultas')) || [];
-    const consultaExistente = consultas.find(consulta => consulta.nome === nome && consulta.data === data && consulta.horario === horario);
-    
-    if (consultaExistente) {
-        alert('Este paciente já tem uma consulta marcada neste horário!');
-        return;
-    }
+let consultas = [];
 
-    const novaConsulta = { nome, responsavel, idade, telefone, especialidade, data, horario };
-    consultas.push(novaConsulta);
-    localStorage.setItem('consultas', JSON.stringify(consultas));
+saveButton.addEventListener("click", function() {
+    const nome = document.getElementById("nome").value;
+    const responsavel = document.getElementById("responsavel").value;
+    const idade = document.getElementById("idade").value;
+    const telefone = document.getElementById("telefone").value;
+    const especialidade = document.getElementById("especialidadeCadastro").value;
+    const dataConsulta = document.getElementById("dataConsulta").value;
+    const horarioConsulta = document.getElementById("horarioConsulta").value;
 
-    alert('Consulta salva com sucesso!');
-    this.reset();
-    mostrarConsultasMes();
-});
+    if (nome && responsavel && idade && telefone && especialidade && dataConsulta && horarioConsulta) {
+        const consulta = {
+            nome,
+            responsavel,
+            idade,
+            telefone,
+            especialidade,
+            data: dataConsulta,
+            horario: horarioConsulta
+        };
 
-// Exibir consultas diárias
-document.getElementById('consultasDiarias').addEventListener('click', function() {
-    const hoje = new Date().toISOString().split('T')[0]; // Obtém a data de hoje
-    mostrarConsultas('diarias', hoje);
-});
-
-// Exibir consultas do mês
-document.getElementById('consultasMes').addEventListener('click', function() {
-    mostrarConsultasMes();
-});
-
-function mostrarConsultas(tipo, filtroData = null) {
-    const consultas = JSON.parse(localStorage.getItem('consultas')) || [];
-    let resultadoHTML = '';
-
-    if (consultas.length === 0) {
-        resultadoHTML = '<p>Nenhuma consulta encontrada.</p>';
+        consultas.push(consulta);
+        updateConsultas();
+        alert("Consulta salva com sucesso!");
+        clearFields();
     } else {
-        consultas.forEach(consulta => {
-            if (tipo === 'diarias' && consulta.data === filtroData) {
-                resultadoHTML += gerarHtmlConsulta(consulta);
-            } else if (tipo === 'mes') {
-                resultadoHTML += gerarHtmlConsulta(consulta);
-            }
-        });
+        alert("Por favor, preencha todos os campos.");
     }
+});
 
-    document.getElementById('listaConsultas').innerHTML = resultadoHTML;
-}
+filterButton.addEventListener("click", function() {
+    const especialidadeFiltro = document.getElementById("especialidade").value;
+    const dataFiltro = document.getElementById("data").value;
+    const horarioFiltro = document.getElementById("horario").value;
 
-function gerarHtmlConsulta(consulta) {
-    return `
-        <div class="consulta-item">
-            <p><strong>Nome:</strong> ${consulta.nome}</p>
-            <p><strong>Responsável:</strong> ${consulta.responsavel}</p>
-            <p><strong>Idade:</strong> ${consulta.idade}</p>
-            <p><strong>Telefone:</strong> ${consulta.telefone}</p>
-            <p><strong>Especialidade:</strong> ${consulta.especialidade}</p>
-            <p><strong>Data:</strong> ${consulta.data}</p>
-            <p><strong>Horário:</strong> ${consulta.horario}</p>
-            <button class="excluir" onclick="excluirConsulta('${consulta.nome}', '${consulta.data}', '${consulta.horario}')">Excluir</button>
-        </div>
-    `;
-}
+    const resultados = consultas.filter(consulta => {
+        return (!especialidadeFiltro || consulta.especialidade === especialidadeFiltro) &&
+               (!dataFiltro || consulta.data === dataFiltro) &&
+               (!horarioFiltro || consulta.horario === horarioFiltro);
+    });
 
-function mostrarConsultasMes() {
-    const consultas = JSON.parse(localStorage.getItem('consultas')) || [];
-    const consultasPorDia = {};
+    displayFilteredResults(resultados);
+});
+
+function updateConsultas() {
+    consultasDoMes.innerHTML = "";
+    consultasDiarias.innerHTML = "";
+    const hoje = new Date().toISOString().split("T")[0];
     
-    // Organiza consultas por dia
     consultas.forEach(consulta => {
-        if (!consultasPorDia[consulta.data]) {
-            consultasPorDia[consulta.data] = [];
+        const dia = new Date(consulta.data).getDate();
+        const mes = new Date(consulta.data).getMonth() + 1;
+        const ano = new Date(consulta.data).getFullYear();
+
+        // Adiciona a consulta ao mês
+        let mesDiv = document.getElementById(`mes${mes}`);
+        if (!mesDiv) {
+            mesDiv = document.createElement("div");
+            mesDiv.id = `mes${mes}`;
+            mesDiv.innerHTML = `<h3>Mês: ${mes}/${ano}</h3>`;
+            consultasDoMes.appendChild(mesDiv);
         }
-        consultasPorDia[consulta.data].push(consulta);
-    });
+        
+        mesDiv.innerHTML += `<button onclick="showDay(${dia}, '${consulta.data}')">${dia}</button>`;
 
-    let resultadoHTML = '';
-    
-    Object.keys(consultasPorDia).forEach(dia => {
-        resultadoHTML += `<h3 onclick="toggleConsultas('${dia}')">${dia}</h3>`;
-        resultadoHTML += `<div id="${dia}" class="minimizar-maximizar">`;
-        consultasPorDia[dia].forEach(consulta => {
-            resultadoHTML += gerarHtmlConsulta(consulta);
-        });
-        resultadoHTML += `</div>`;
+        // Adiciona a consulta ao dia
+        if (consulta.data === hoje) {
+            consultasDiarias.innerHTML += `<div>${consulta.nome} - ${consulta.horario} <button onclick="editConsulta('${consulta.nome}')">Editar</button><button onclick="deleteConsulta('${consulta.nome}')">Excluir</button></div>`;
+        }
     });
-
-    document.getElementById('listaConsultas').innerHTML = resultadoHTML;
 }
 
-function toggleConsultas(dia) {
-    const div = document.getElementById(dia);
-    if (div.classList.contains('visible')) {
-        div.classList.remove('visible');
+function showDay(dia, data) {
+    const diaConsultas = consultas.filter(consulta => consulta.data === data);
+    const resultDiv = document.createElement("div");
+    resultDiv.innerHTML = `<h4>Consultas do dia ${dia}:</h4>`;
+    diaConsultas.forEach(consulta => {
+        resultDiv.innerHTML += `<div>${consulta.nome} - ${consulta.horario} <button onclick="editConsulta('${consulta.nome}')">Editar</button><button onclick="deleteConsulta('${consulta.nome}')">Excluir</button></div>`;
+    });
+    consultasDoMes.appendChild(resultDiv);
+}
+
+function displayFilteredResults(resultados) {
+    // Limpa resultados anteriores
+    const resultadoDiv = document.createElement("div");
+    resultadoDiv.innerHTML = "<h3>Resultados do Filtro:</h3>";
+    
+    if (resultados.length > 0) {
+        resultados.forEach(consulta => {
+            resultadoDiv.innerHTML += `<div>${consulta.nome} - ${consulta.data} ${consulta.horario}</div>`;
+        });
     } else {
-        div.classList.add('visible');
+        resultadoDiv.innerHTML += "<div>Nenhum resultado encontrado.</div>";
+    }
+    consultasDoMes.appendChild(resultadoDiv);
+}
+
+function clearFields() {
+    document.getElementById("nome").value = "";
+    document.getElementById("responsavel").value = "";
+    document.getElementById("idade").value = "";
+    document.getElementById("telefone").value = "";
+    document.getElementById("especialidadeCadastro").value = "";
+    document.getElementById("dataConsulta").value = "";
+    document.getElementById("horarioConsulta").value = "";
+}
+
+function editConsulta(nome) {
+    // Função para editar a consulta
+    const consulta = consultas.find(c => c.nome === nome);
+    if (consulta) {
+        // Exibir os dados da consulta nos campos
+        document.getElementById("nome").value = consulta.nome;
+        document.getElementById("responsavel").value = consulta.responsavel;
+        document.getElementById("idade").value = consulta.idade;
+        document.getElementById("telefone").value = consulta.telefone;
+        document.getElementById("especialidadeCadastro").value = consulta.especialidade;
+        document.getElementById("dataConsulta").value = consulta.data;
+        document.getElementById("horarioConsulta
+
+").value = consulta.horario;
+        
+        // Remover a consulta atual do array
+        deleteConsulta(nome);
     }
 }
 
-function excluirConsulta(nome, data, horario) {
-    const consultas = JSON.parse(localStorage.getItem('consultas')) || [];
-    const novasConsultas = consultas.filter(consulta => !(consulta.nome === nome && consulta.data === data && consulta.horario === horario));
-    localStorage.setItem('consultas', JSON.stringify(novasConsultas));
-    mostrarConsultasMes();
+function deleteConsulta(nome) {
+    consultas = consultas.filter(c => c.nome !== nome);
+    updateConsultas();
 }
