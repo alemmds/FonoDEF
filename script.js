@@ -111,8 +111,8 @@ function atualizarConsultas() {
             detalhesDiv.appendChild(consultaDiv);
         });
 
+        mesDiv.appendChild(detalhesDiv);
         consultasPorMes.appendChild(mesDiv);
-        consultasPorMes.appendChild(detalhesDiv);
     }
 }
 
