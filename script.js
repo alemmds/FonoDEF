@@ -30,44 +30,10 @@ document.addEventListener("DOMContentLoaded", function () {
         consultas.forEach(consulta => {
             const dia = new Date(consulta.dataConsulta).getDate();
             const mes = new Date(consulta.dataConsulta).toLocaleString('default', { month: 'long' });
-            const mesDiv = document.createElement("div");
-            mesDiv.innerHTML = `<strong>${mes}</strong>`;
-            const diaButton = document.createElement("button");
-            diaButton.innerText = dia;
-            diaButton.onclick = function() {
-                displayConsultaInfo(consulta);
-            };
-
-            mesDiv.appendChild(diaButton);
-            consultasMes.appendChild(mesDiv);
+            const consultaDiv = document.createElement("div");
+            consultaDiv.innerHTML = `<strong>${mes} ${dia}</strong> - ${consulta.nome}`;
+            consultasMes.appendChild(consultaDiv);
         });
-    }
-
-    function displayConsultaInfo(consulta) {
-        resultadoFiltro.innerHTML = `
-            <div>
-                <p><strong>Nome:</strong> ${consulta.nome}</p>
-                <p><strong>Responsável:</strong> ${consulta.responsavel}</p>
-                <p><strong>Idade:</strong> ${consulta.idade}</p>
-                <p><strong>Consultório:</strong> ${consulta.consultorio}</p>
-                <p><strong>Especialidade:</strong> ${consulta.especialidade}</p>
-                <p><strong>Data da Consulta:</strong> ${consulta.dataConsulta}</p>
-                <p><strong>Horário da Consulta:</strong> ${consulta.horarioConsulta}</p>
-                <button onclick="editConsulta('${consulta.nome}')">Editar</button>
-                <button onclick="deleteConsulta('${consulta.nome}')">Excluir</button>
-            </div>
-        `;
-    }
-
-    function editConsulta(nome) {
-        // Lógica para editar consulta
-    }
-
-    function deleteConsulta(nome) {
-        const consultas = JSON.parse(localStorage.getItem("consultas")) || [];
-        const updatedConsultas = consultas.filter(consulta => consulta.nome !== nome);
-        localStorage.setItem("consultas", JSON.stringify(updatedConsultas));
-        loadConsultas();
     }
 
     loadConsultas();
