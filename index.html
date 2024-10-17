@@ -3,55 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FonoClinic - Gerenciamento de Consultas</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Certifique-se de que o arquivo CSS está no caminho correto -->
+    <title>Cadastro de Consultas - FonoClinic</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
+    <script src="script.js" defer></script>
 </head>
 <body>
+
     <h1>Cadastro de Consultas</h1>
-    <div class="container">
-        <h2>Filtrar Consultas</h2>
-        <label for="especialidadeFiltro">Especialidade:</label>
-        <input type="text" id="especialidadeFiltro" placeholder="Digite a especialidade">
 
-        <label for="dataFiltro">Data:</label>
-        <input type="text" id="dataFiltro" placeholder="dd/mm/aaaa">
+    <h2>Filtrar Consultas</h2>
+    <form id="formFiltro">
+        <input type="text" id="especialidadeFiltro" placeholder="Especialidade: Digite a especialidade">
+        <input type="date" id="dataFiltro" placeholder="Data: dd/mm/aaaa">
+        <input type="time" id="horarioFiltro" placeholder="Horário:">
+        <button type="button" id="confirmarFiltro">Confirmar</button>
+    </form>
 
-        <label for="horarioFiltro">Horário:</label>
-        <input type="text" id="horarioFiltro" placeholder="--:--">
-        <button id="filtrarBtn">Confirmar</button>
-
-        <h2>Cadastro de Pacientes</h2>
-        <label for="nomePaciente">Nome:</label>
-        <input type="text" id="nomePaciente" placeholder="Nome do Paciente">
-
-        <label for="responsavel">Responsável:</label>
-        <input type="text" id="responsavel" placeholder="Responsável pelo Paciente">
-
-        <label for="idade">Idade:</label>
+    <h2>Cadastro de Pacientes</h2>
+    <form id="formCadastro">
+        <input type="text" id="nomePaciente" placeholder="Nome do Paciente" required>
+        <input type="text" id="responsavel" placeholder="Responsável" required>
         <input type="number" id="idade" placeholder="Idade">
+        <input type="text" id="consultorio" placeholder="Consultório">
+        <input type="text" id="especialidade" placeholder="Especialidade" required>
+        <input type="date" id="dataConsulta" placeholder="Data da Consulta" required>
+        <input type="time" id="horario" placeholder="Horário da Consulta" required>
+        <button type="button" id="salvarConsulta">Salvar Consulta</button>
+    </form>
 
-        <label for="consultorio">Consultório:</label>
-        <input type="text" id="consultorio" placeholder="Número ou Nome do Consultório">
+    <h3>Resultado de Filtro</h3>
+    <ul id="resultadoFiltro"></ul>
 
-        <label for="especialidade">Especialidade:</label>
-        <input type="text" id="especialidade" placeholder="Especialidade do Atendimento">
+    <h3>Consultas do Mês</h3>
+    <ul id="consultasMes"></ul>
 
-        <label for="dataConsulta">Data da Consulta:</label>
-        <input type="text" id="dataConsulta" placeholder="dd/mm/aaaa">
+    <footer>
+        <p>&copy; 2024 FonoClinic</p>
+    </footer>
 
-        <label for="horarioConsulta">Horário da Consulta:</label>
-        <input type="text" id="horarioConsulta" placeholder="--:--">
-        
-        <button id="salvarConsultaBtn">Salvar Consulta</button>
-
-        <h2>Resultado de Filtro</h2>
-        <div id="resultadoFiltro"></div>
-
-        <h2>Consultas do Mês</h2>
-        <div id="consultasMes"></div>
-    </div>
-
-    <script src="script.js"></script> <!-- Certifique-se de que o arquivo JS está no caminho correto -->
 </body>
 </html>
