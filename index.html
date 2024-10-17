@@ -3,89 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
     <title>FonoClinic - Gerenciamento de Consultas</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>FonoClinic - Gerenciamento de Consultas</h1>
-        </header>
-
-        <!-- Formulário de cadastro estilo Google Forms -->
-        <form id="consultaForm" class="formulario-google-forms">
-            <h2>Cadastro de Paciente</h2>
-
-            <!-- Campos do formulário em layout horizontal com retângulos -->
-            <div class="grupo-campos">
-                <div class="campo">
-                    <label for="nomePaciente">Nome do Paciente</label>
-                    <input type="text" id="nomePaciente" name="nomePaciente" placeholder="Digite o nome do paciente" required>
-                </div>
-
-                <div class="campo">
-                    <label for="responsavel">Responsável</label>
-                    <input type="text" id="responsavel" name="responsavel" placeholder="Nome do responsável" required>
-                </div>
+        <h1>FonoClinic - Gerenciamento de Consultas</h1>
+        <form id="consultaForm">
+            <div class="form-group">
+                <label for="nome">Nome do Paciente:</label>
+                <input type="text" id="nome" required>
             </div>
-
-            <div class="grupo-campos">
-                <div class="campo">
-                    <label for="idade">Idade</label>
-                    <input type="number" id="idade" name="idade" placeholder="Digite a idade" required>
-                </div>
-
-                <div class="campo">
-                    <label for="telefone">Número de Telefone</label>
-                    <input type="tel" id="telefone" name="telefone" placeholder="Digite o telefone" required>
-                </div>
+            <div class="form-group">
+                <label for="responsavel">Responsável:</label>
+                <input type="text" id="responsavel" required>
             </div>
-
-            <div class="grupo-campos">
-                <div class="campo">
-                    <label for="especialidade">Especialidade</label>
-                    <select id="especialidade" name="especialidade">
-                        <option value="Fonoaudiologia">Fonoaudiologia</option>
-                        <option value="Psicologia">Psicologia</option>
-                        <option value="Fisioterapia">Fisioterapia</option>
-                    </select>
-                </div>
-
-                <div class="campo">
-                    <label for="consultorio">Consultório</label>
-                    <input type="text" id="consultorio" name="consultorio" placeholder="Número do consultório" required>
-                </div>
+            <div class="form-group">
+                <label for="idade">Idade:</label>
+                <input type="number" id="idade" required>
             </div>
-
-            <div class="grupo-campos">
-                <div class="campo">
-                    <label for="dataConsulta">Data da Consulta</label>
-                    <input type="date" id="dataConsulta" name="dataConsulta" required>
-                </div>
-
-                <div class="campo">
-                    <label for="horarioConsulta">Horário da Consulta</label>
-                    <input type="time" id="horarioConsulta" name="horarioConsulta" required>
-                </div>
+            <div class="form-group">
+                <label for="telefone">Número de Telefone:</label>
+                <input type="tel" id="telefone" required>
             </div>
-
-            <!-- Botão para salvar a consulta -->
-            <div class="grupo-campos">
-                <button type="submit" class="btn-principal">Salvar Consulta</button>
+            <div class="form-group">
+                <label for="especialidade">Especialidade:</label>
+                <input type="text" id="especialidade" required>
             </div>
+            <div class="form-group">
+                <label for="data">Data da Consulta:</label>
+                <input type="date" id="data" required>
+            </div>
+            <div class="form-group">
+                <label for="horario">Horário da Consulta:</label>
+                <input type="time" id="horario" required>
+            </div>
+            <button type="submit" id="salvarBtn">Salvar Consulta</button>
         </form>
-
-        <!-- Botões de navegação para consultar dados -->
-        <div class="botoes-secundarios">
-            <button id="btnHoje" class="btn-secundario">Consultas de Hoje</button>
-            <button id="btnConsultasMes" class="btn-secundario">Consultas por Mês</button>
+        
+        <div class="button-group">
+            <button id="consultasDiarias">Consultas Diárias</button>
+            <button id="consultasMes">Consultas por Mês</button>
         </div>
-
-        <!-- Exibição de consultas -->
-        <section id="consultasResumo" class="resultado-consultas"></section>
-
+        
+        <div id="resultadoFiltro">
+            <h2>Resultado de Filtro</h2>
+            <div id="listaConsultas"></div>
+        </div>
     </div>
-
+    
     <script src="script.js"></script>
 </body>
 </html>
