@@ -1,23 +1,20 @@
 {
-  "short_name": "FonoClinic",
-  "name": "Gerenciamento de Consultas - FonoClinic",
-  "description": "Um aplicativo para gerenciar consultas em uma clínica multiprofissional.",
-  "start_url": "/index.html",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#4CAF50",
-  "icons": [
-    {
-      "src": "/icons/icon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
-  "orientation": "portrait",
-  "scope": "/"
+    "name": "FonoClinic",
+    "short_name": "FonoClinic",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#007bff",
+    "icons": [
+        {
+            "src": "icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
 }
