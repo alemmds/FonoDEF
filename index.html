@@ -1,44 +1,63 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="manifest.json">
+    <title>Gerenciamento de Consultas</title>
     <link rel="stylesheet" href="styles.css">
-    <title>FonoClinic</title>
 </head>
 <body>
-    <div class="app-container">
-        <h1>Cadastro de Consultas</h1>
-        <div class="filter-section">
-            <h2>Resultado do Filtro</h2>
-            <input type="text" id="especialidade" placeholder="Especialidade">
-            <input type="date" id="data">
-            <input type="time" id="horario">
-            <button id="filterButton">Confirmar</button>
-        </div>
-        
-        <div class="form-section">
-            <h2>Cadastro de Pacientes</h2>
-            <input type="text" id="nome" placeholder="Nome do Paciente">
-            <input type="text" id="responsavel" placeholder="Responsável">
-            <input type="number" id="idade" placeholder="Idade">
-            <input type="tel" id="telefone" placeholder="Telefone">
-            <input type="text" id="especialidadeCadastro" placeholder="Especialidade">
-            <input type="date" id="dataConsulta">
-            <input type="time" id="horarioConsulta">
-            <button id="saveButton">Salvar Consulta</button>
-        </div>
+    <h1>Gerenciamento de Consultas</h1>
 
-        <div class="consultas-mes">
-            <h2>Consultas do Mês</h2>
-            <div id="consultasDoMes"></div>
-        </div>
-        
-        <div class="consultas-diarias">
-            <h2>Consultas Diárias</h2>
-            <div id="consultasDiarias"></div>
-        </div>
+    <!-- Formulário para cadastrar consulta -->
+    <form id="consultaForm">
+        <label for="nome">Nome do Paciente:</label>
+        <input type="text" id="nome" required>
+
+        <label for="especialidade">Especialidade:</label>
+        <input type="text" id="especialidade" required>
+
+        <label for="data">Data:</label>
+        <input type="date" id="data" required>
+
+        <label for="horario">Horário:</label>
+        <input type="time" id="horario" required>
+
+        <label for="consultorio">Consultório:</label>
+        <input type="text" id="consultorio" required>
+
+        <label for="idade">Idade do Paciente:</label>
+        <input type="number" id="idade" required>
+
+        <button type="submit" id="salvarConsulta">Salvar Consulta</button>
+    </form>
+
+    <!-- Consultas do Mês -->
+    <div id="consultasDoMes">
+        <h2>Consultas do Mês</h2>
+        <div id="consultasPorMes"></div>
+    </div>
+
+    <!-- Resultados do Filtro -->
+    <div id="resultadoFiltro">
+        <h2>Resultados do Filtro</h2>
+        <label for="filtroEspecialidade">Especialidade:</label>
+        <input type="text" id="filtroEspecialidade">
+
+        <label for="filtroData">Data:</label>
+        <input type="date" id="filtroData">
+
+        <label for="filtroHorario">Horário:</label>
+        <input type="time" id="filtroHorario">
+
+        <button id="confirmarFiltro">Confirmar</button>
+        <div id="resultadosDoFiltro"></div>
+    </div>
+
+    <!-- Consultas Diárias -->
+    <div id="consultasDiarias">
+        <h2>Consultas Diárias</h2>
+        <div id="consultasDiariasContainer"></div>
     </div>
 
     <script src="script.js"></script>
