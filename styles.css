@@ -7,7 +7,7 @@ body {
 
 .container {
     width: 100%;
-    max-width: 600px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -19,32 +19,49 @@ header h1 {
     margin-bottom: 20px;
 }
 
-.formulario {
+/* Estilo para o formulário horizontal */
+.formulario-horizontal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     background-color: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.formulario h2 {
+.formulario-horizontal h2 {
+    width: 100%;
     color: #4CAF50;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Grupo de campos com molduras retangulares */
+.grupo-campos {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f7f7f7;
 }
 
 label {
-    display: block;
     margin-bottom: 5px;
     font-weight: bold;
     color: #333;
 }
 
 input {
-    width: 100%;
     padding: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 1em;
+    width: 100%;
 }
 
 .btn-principal {
@@ -62,6 +79,7 @@ input {
     background-color: #45a049;
 }
 
+/* Estilo dos botões secundários */
 .botoes-secundarios {
     display: flex;
     justify-content: space-between;
