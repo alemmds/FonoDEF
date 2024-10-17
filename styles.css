@@ -1,94 +1,158 @@
+/* Estilo geral */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
-}
-
-h1, h2, h3 {
+    background-color: #f4f4f4;
     color: #333;
+    padding: 20px;
 }
 
-.form-group {
-    margin-bottom: 15px;
+h1 {
+    text-align: center;
+    color: #2E8B57;
+    margin-bottom: 20px;
 }
 
-label {
+h2 {
+    color: #2E8B57;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Seções de formulário e consultas */
+section {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Formulário */
+form label {
     display: block;
-    margin-bottom: 5px;
+    margin-top: 10px;
     font-weight: bold;
 }
 
-input[type="text"], input[type="number"], input[type="tel"], input[type="date"], input[type="time"] {
+input, select, textarea {
     width: 100%;
-    padding: 10px;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+/* Botões */
+button {
+    background-color: #2E8B57;
+    color: white;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button:hover {
+    background-color: #006400;
+}
+
+/* Tamanho dos botões para consultas mensais e diárias */
+#consultas-mes-content button, 
+#consultas-dia-content button {
+    font-size: 1.2em;
+    padding: 15px;
+    margin: 5px;
+    background-color: #ADD8E6;
+    border: 1px solid #87CEEB;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+#consultas-mes-content button:hover, 
+#consultas-dia-content button:hover {
+    background-color: #87CEEB;
+}
+
+/* Tamanho maior dos botões para meses e dias */
+#consultas-mes-content button {
+    font-size: 1.5em;
+    padding: 15px;
+}
+
+#consultas-dia-content button {
+    font-size: 1.3em;
+    padding: 12px;
+}
+
+/* Alinhamento e layout do filtro */
+#filtro-consultas {
+    margin-bottom: 30px;
+}
+
+#filtro-consultas label {
+    display: inline-block;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+#filtro-consultas input {
+    width: auto;
+    margin-right: 10px;
+}
+
+#filtro-consultas button {
+    width: auto;
+    padding: 8px 12px;
+}
+
+/* Consultas do dia e por mês */
+#consultas-diarias, 
+#consultas-mensais {
+    margin-top: 20px;
+}
+
+/* Consultas listadas */
+#consultas-dia-content {
+    margin-top: 15px;
+}
+
+#consultas-dia-content div {
+    background-color: #f9f9f9;
+    padding: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
     margin-bottom: 10px;
 }
 
-button.btn {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 15px;
+#consultas-dia-content div p {
+    margin: 5px 0;
+}
+
+#consultas-dia-content button {
+    background-color: #FFA07A;
     border: none;
-    border-radius: 5px;
+    padding: 8px 10px;
+    color: white;
+    font-size: 1em;
+    margin-top: 5px;
+    border-radius: 4px;
     cursor: pointer;
 }
 
-button.btn:hover {
-    background-color: #0056b3;
-}
-
-button.button-dia {
-    background-color: #28a745;
-    color: #fff;
-    padding: 5px 10px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button.button-dia:hover {
-    background-color: #218838;
-}
-
-.consulta-item {
-    background-color: #f8f9fa;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-}
-
-button.btn-editar, button.btn-excluir {
-    margin-right: 10px;
-    padding: 5px 10px;
-    border-radius: 3px;
-    border: none;
-    cursor: pointer;
-}
-
-button.btn-editar {
-    background-color: #ffc107;
-    color: #fff;
-}
-
-button.btn-excluir {
-    background-color: #dc3545;
-    color: #fff;
+#consultas-dia-content button:hover {
+    background-color: #FF4500;
 }
