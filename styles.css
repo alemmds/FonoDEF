@@ -1,104 +1,63 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
     margin: 0;
-    padding: 0;
+    padding: 20px;
 }
 
 .container {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
+    max-width: 600px;
+    margin: auto;
+    background: white;
     padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-header h1 {
+h1 {
     text-align: center;
     color: #4CAF50;
-    font-size: 2em;
-    margin-bottom: 20px;
 }
 
-/* Estilo Google Forms com layout horizontal */
-.formulario-google-forms {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    color: #4CAF50;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* Grupo de campos organizados horizontalmente */
-.grupo-campos {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.campo {
-    flex: 0 0 48%;
-    display: flex;
-    flex-direction: column;
+.form-group {
+    margin-bottom: 15px;
 }
 
 label {
-    font-weight: bold;
+    display: block;
     margin-bottom: 5px;
+    font-weight: bold;
 }
 
-input, select {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1em;
+input[type="text"],
+input[type="number"],
+input[type="tel"],
+input[type="date"],
+input[type="time"] {
     width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-.btn-principal {
+button {
     background-color: #4CAF50;
     color: white;
-    padding: 10px;
+    padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 100%;
-    font-size: 1.1em;
+    margin: 5px 0;
 }
 
-.btn-principal:hover {
+button:hover {
     background-color: #45a049;
 }
 
-/* Botões secundários */
-.botoes-secundarios {
-    display: flex;
-    justify-content: space-between;
+.button-group {
+    text-align: center;
+}
+
+#resultadoFiltro {
     margin-top: 20px;
-}
-
-.btn-secundario {
-    background-color: #ddd;
-    color: #333;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 48%;
-}
-
-.btn-secundario:hover {
-    background-color: #ccc;
-}
-
-.resultado-consultas {
-    margin-top: 30px;
-    background-color: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
