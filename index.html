@@ -3,65 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Aplicativo web para cadastro e gestão de consultas da FonoClinic">
+    <meta name="theme-color" content="#007bff">
+    
+    <!-- Título -->
+    <title>FonoClinic - Gestão de Consultas</title>
+    
+    <!-- Link para o Manifest -->
     <link rel="manifest" href="manifest.json">
-    <title>FonoClinic</title>
+    
+    <!-- Estilo Externo -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Ícones da Web App -->
+    <link rel="icon" href="icons/icon-192x192.png" sizes="192x192">
+    <link rel="apple-touch-icon" href="icons/icon-512x512.png">
+    
+    <!-- Script Externo -->
+    <script defer src="script.js"></script>
+    
 </head>
 <body>
-    <div class="container">
-        <h1>Cadastro de Consultas</h1>
-        
-        <form id="form-container">
-            <div class="form-group">
-                <label for="nome">Nome do Paciente</label>
-                <input type="text" id="nome" required>
-            </div>
-            <div class="form-group">
-                <label for="telefone">Telefone</label>
-                <input type="text" id="telefone" required>
-            </div>
-            <div class="form-group">
-                <label for="idade">Idade</label>
-                <input type="number" id="idade" required>
-            </div>
-            <div class="form-group">
-                <label for="especialidade">Especialidade</label>
-                <input type="text" id="especialidade" required>
-            </div>
-            <div class="form-group">
-                <label for="data">Data</label>
-                <input type="date" id="data" required>
-            </div>
-            <div class="form-group">
-                <label for="hora">Hora</label>
-                <input type="time" id="hora" required>
-            </div>
-            <button type="button" id="salvar-consulta">Salvar Consulta</button>
+    <header>
+        <h1>FonoClinic - Gestão de Consultas</h1>
+    </header>
+    
+    <!-- Seção do Formulário -->
+    <section id="cadastro">
+        <h2>Cadastro de Pacientes</h2>
+        <form id="cadastro-form">
+            <label for="nome">Nome do Paciente:</label>
+            <input type="text" id="nome" name="nome" required>
+            
+            <label for="idade">Idade:</label>
+            <input type="number" id="idade" name="idade" required>
+            
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" name="telefone" required>
+            
+            <label for="especialidade">Especialidade:</label>
+            <select id="especialidade" name="especialidade" required>
+                <option value="Fonoaudiologia">Fonoaudiologia</option>
+                <option value="Psicologia">Psicologia</option>
+                <!-- Outras especialidades podem ser adicionadas aqui -->
+            </select>
+            
+            <label for="data-consulta">Data da Consulta:</label>
+            <input type="date" id="data-consulta" name="data-consulta" required>
+            
+            <label for="horario-consulta">Horário da Consulta:</label>
+            <input type="time" id="horario-consulta" name="horario-consulta" required>
+            
+            <label for="consultorio">Consultório:</label>
+            <input type="number" id="consultorio" name="consultorio" required>
+            
+            <button type="submit" id="salvar-consulta">Salvar Consulta</button>
         </form>
-
-        <div id="resultados">
-            <h2>Consultas do Mês</h2>
-            <div id="mes-container">
-                <h3>Mês: <span id="mes-ano"></span></h3>
-                <div id="dias-container"></div>
-            </div>
-
-            <h2>Resultados por Filtro</h2>
-            <div id="filtro-container">
-                <input type="text" id="filtro-especialidade" placeholder="Especialidade">
-                <input type="date" id="filtro-data">
-                <input type="time" id="filtro-hora">
-                <button id="filtrar">Filtrar</button>
-            </div>
-            <div id="resultado-filtro"></div>
+    </section>
+    
+    <!-- Seção de Consultas do Mês -->
+    <section id="consultas-mes">
+        <h2>Consultas por Mês</h2>
+        <div id="mes-botoes">
+            <!-- Botões dinâmicos de meses serão gerados aqui -->
         </div>
-
-        <div id="consultas-diarias">
-            <h2>Consultas Diárias</h2>
-            <div id="resultado-diarias"></div>
+         <div id="dias-consultas">
+            <!-- Botões dinâmicos de dias serão gerados aqui -->
         </div>
-    </div>
+    </section>
+    
+    <!-- Seção de Consultas Diárias -->
+    <section id="consultas-diarias">
+        <h2>Consultas Diárias</h2>
+        <div id="lista-consultas">
+            <!-- Consultas do dia serão exibidas aqui -->
+        </div>
+    </section>
+    
+    <!-- Seção de Filtros de Consultas -->
+    <section id="resultado-filtro">
+        <h2>Filtrar Consultas</h2>
+        <form id="filtro-form">
+            <label for="filtro-especialidade">Especialidade:</label>
+            <select id="filtro-especialidade" name="filtro-especialidade">
+                <option value="Fonoaudiologia">Fonoaudiologia</option>
+                <option value="Psicologia">Psicologia</option>
+                <!-- Outras especialidades podem ser adicionadas aqui -->
+            </select>
+            
+            <label for="filtro-data">Data:</label>
+            <input type="date" id="filtro-data" name="filtro-data">
+            
+            <label for="filtro-horario">Horário:</label>
+            <input type="time" id="filtro-horario" name="filtro-horario">
+            
+            <button type="button" id="filtro-confirmar">Confirmar</button>
+        </form>
+        
+        <div id="resultado-filtro-detalhes">
+            <!-- Resultados filtrados serão mostrados aqui -->
+        </div>
+    </section>
 
-    <script src="script.js"></script>
+    <footer>
+        <p>FonoClinic - Gestão de Consultas &copy; 2024</p>
+    </footer>
 </body>
 </html>
