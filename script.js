@@ -53,11 +53,11 @@ function exibirConsultasMes() {
     const consultasMes = consultas.filter(consulta => new Date(consulta.dataConsulta).getMonth() === new Date().getMonth());
     
     const consultasMesDiv = document.getElementById('consultasMes');
-    consultasMesDiv.innerHTML = consultasMes.length ? '<h2>Consultas deste Mês</h2>' : '';
+    consultasMesDiv.innerHTML = consultasMes.length ? '<h2>Consultas do Mês</h2>' : '';
 
     consultasMes.forEach(consulta => {
         consultasMesDiv.innerHTML += `
-            <p><strong>${consulta.nomePaciente}</strong> - ${consulta.especialidade} em ${consulta.dataConsulta}</p>
+            <p><strong>${consulta.nomePaciente}</strong> - ${consulta.especialidade} no dia ${consulta.dataConsulta}</p>
         `;
     });
 }
