@@ -1,21 +1,15 @@
 {
-  "name": "Web App Consultas",
-  "short_name": "Consultas",
-  "description": "Aplicativo web para gestão de consultas",
+  "name": "Lanchonete Bacanga",
+  "short_name": "Bacanga",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#2980b9",
+  "description": "Aplicativo Web para gerenciamento de pedidos",
   "icons": [
     {
-      "src": "/icons/icon-192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "/icons/icon-512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
     }
   ]
 }
