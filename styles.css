@@ -1,112 +1,49 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     font-family: Arial, sans-serif;
-    padding: 20px;
-    background-color: #f4f4f4;
-}
-
-header {
+    background-color: #f0f0f0;
+    color: #333;
     text-align: center;
-    margin-bottom: 20px;
 }
 
 h1 {
-    font-size: 24px;
-    color: #2c3e50;
+    color: #0066cc;
 }
 
-main {
+#mesas {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 20px;
 }
 
-.form-section, .filter-section, .consulta-mes-section {
+.mesa {
     background-color: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: #2980b9;
-}
-
-.input-group {
-    margin-bottom: 10px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-input {
-    width: 100%;
-    padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
+    padding: 10px;
+    width: 22%;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
 }
 
-button {
-    background-color: #2980b9;
+.mesa input {
+    width: 90%;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.mesa button {
+    width: 45%;
+    padding: 10px;
+    margin: 5px;
+    background-color: #0066cc;
     color: #fff;
-    padding: 10px;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
-    width: 100%;
 }
 
-button:hover {
-    background-color: #1e6a8b;
+.mesa button:hover {
+    background-color: #004d99;
 }
 
-.meses-grid, .dias-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-    gap: 10px;
-}
-
-.meses-grid button, .dias-grid button {
-    background-color: #27ae60;
-    color: white;
-    font-size: 16px;
-    padding: 10px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    width: 50px;
-    height: 50px;
-}
-
-.meses-grid button:hover, .dias-grid button:hover {
-    background-color: #229954;
-}
-
-.consulta-detalhe {
-    margin-top: 15px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-left: 5px solid #27ae60;
-    border-radius: 4px;
-}
-
-button.excluir-btn {
-    background-color: #e74c3c;
-}
-
-button.editar-btn {
-    background-color: #3498db;
-    margin-right: 10px;
+#qrcode1, #qrcode2, #qrcode3, #qrcode4 {
+    margin-top: 10px;
 }
